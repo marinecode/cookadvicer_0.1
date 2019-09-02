@@ -21,7 +21,7 @@
         <module>register</module>
         <module>storage</module>
         <module>domain</module>
-        <module>gui</module>
+        <module>gui-service</module>
         <module>gateway</module>
         <module>configsrv</module>
     </modules>

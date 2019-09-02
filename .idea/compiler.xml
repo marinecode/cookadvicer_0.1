@@ -8,13 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="gateway" />
-        <module name="ui-backnew" />
         <module name="configsrv" />
         <module name="auth" />
-        <module name="uifront" />
         <module name="storage" />
         <module name="register" />
         <module name="domain" />
+        <module name="gui-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,7 +22,9 @@
       <module name="service-registry" target="9" />
       <module name="ui" target="9" />
       <module name="ui-back" target="9" />
+      <module name="ui-backnew" target="9" />
       <module name="ui-service" target="9" />
+      <module name="uifront" target="9" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -33,6 +34,7 @@
       <module name="eureka" options="" />
       <module name="gateway" options="" />
       <module name="gui" options="" />
+      <module name="gui-service" options="" />
       <module name="register" options="" />
       <module name="storage" options="" />
       <module name="ui" options="" />
