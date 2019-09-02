@@ -1,0 +1,12 @@
+<div>
+  <h1>Hello</h1>
+  <h3>Another Hello</h3>
+  <button mat-button (click) = showIng()>show ing</button>
+
+  <ul>
+    <li *ngIf = ing>
+      <p>Имя {{ing.name}}</p>
+      <p>Id : {{ing.id}}</p>
+    </li>
+  </ul>
+</div>

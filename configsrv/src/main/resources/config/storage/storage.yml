@@ -1,0 +1,4 @@
+server:
+  port: 10000
+example:
+  property: "i am in the default"

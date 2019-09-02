@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="gateway" />
+        <module name="ui-backnew" />
+        <module name="configsrv" />
+        <module name="auth" />
+        <module name="uifront" />
+        <module name="storage" />
+        <module name="register" />
+        <module name="domain" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="eureka" target="9" />
+      <module name="gui" target="9" />
+      <module name="service-registry" target="9" />
+      <module name="ui" target="9" />
+      <module name="ui-back" target="9" />
+      <module name="ui-service" target="9" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="auth" options="" />
+      <module name="configsrv" options="" />
+      <module name="eureka" options="" />
+      <module name="gateway" options="" />
+      <module name="gui" options="" />
+      <module name="register" options="" />
+      <module name="storage" options="" />
+      <module name="ui" options="" />
+      <module name="ui-back" options="" />
+      <module name="ui-backnew" options="" />
+      <module name="ui-service" options="" />
+      <module name="uifront" options="" />
+    </option>
+  </component>
+</project>
