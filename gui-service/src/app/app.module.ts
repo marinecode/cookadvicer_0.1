@@ -10,7 +10,7 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule, MatChipsModule,
-  MatFormFieldModule, MatIconModule, MatInputModule,
+  MatFormFieldModule, MatIconModule, MatInputModule, MatRadioModule, MatSelectModule,
   MatToolbarModule
 } from '@angular/material';
 import { HomeComponent } from './home/home.component';
@@ -20,7 +20,12 @@ import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 import { NewRecipeComponent } from './my-recipes/new-recipe/new-recipe.component';
 import { DescriptionFieldComponent } from './my-recipes/new-recipe/description-field/description-field.component';
 import { IngredientsFieldComponent } from './my-recipes/new-recipe/ingredients-field/ingredients-field.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {IngService} from "./services/ing.service";
+import {HttpClientModule} from "@angular/common/http";
+import { TypeFieldComponent } from './my-recipes/new-recipe/type-field/type-field.component';
+import {TypeService} from "./services/type.service";
+import { RatingFieldComponent } from './my-recipes/new-recipe/rating-field/rating-field.component';
 
 @NgModule({
   imports: [
@@ -37,6 +42,10 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatIconModule,
     MatChipsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    MatSelectModule,
+    MatRadioModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,
@@ -47,9 +56,11 @@ import {ReactiveFormsModule} from "@angular/forms";
     MyRecipesComponent,
     NewRecipeComponent,
     DescriptionFieldComponent,
-    IngredientsFieldComponent
+    IngredientsFieldComponent,
+    TypeFieldComponent,
+    RatingFieldComponent
   ],
-  providers: [],
+  providers: [IngService, TypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

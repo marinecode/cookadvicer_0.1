@@ -5,32 +5,35 @@ import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/a
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {IngService} from "../../../services/ing.service";
+import {Ingredient} from "../../../Model/ingredient";
 
 @Component({
   selector: 'app-ingredients-field',
   templateUrl: './ingredients-field.component.html',
   styleUrls: ['./ingredients-field.component.css']
 })
-export class IngredientsFieldComponent {
+export class IngredientsFieldComponent{
 
-  visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   ingredientsCtrl = new FormControl();
-  filteredIngs: Observable<string[]>;
-  ingredients: string[] = [];
-  allIngs: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  filteredIngs: Observable<Ingredient[]>;
+  ingredients: Ingredient[] = [];
+  allIngs: Ingredient[] =[];
+
 
   @ViewChild('ingInput', {static: false}) ingInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
-  constructor() {
-
+  constructor( private ingService: IngService ) {
+    this.getAllIngs();
     this.filteredIngs = this.ingredientsCtrl.valueChanges.pipe(
       startWith(null),
-      map((ingredient: string | null) => ingredient ? this._filter(ingredient) : this.allIngs.slice()));
+      map((name: string | null) =>
+        name ? this._filter(name) : this.allIngs.slice()));
   }
 
   add(event: MatChipInputEvent): void {
@@ -38,8 +41,12 @@ export class IngredientsFieldComponent {
       const input = event.input;
       const value = event.value;
 
+      //Добавляем в БД новый ингредиент
       if ((value || '').trim()) {
-        this.ingredients.push(value.trim());
+        let ing:Ingredient = {
+          name : value,
+          id: undefined };
+          this.addIng( ing );
       }
 
       // Reset the input value
@@ -48,10 +55,11 @@ export class IngredientsFieldComponent {
       }
 
       this.ingredientsCtrl.setValue(null);
+
     }
   }
 
-  remove(ingredient: string): void {
+  remove(ingredient: Ingredient): void {
     const index = this.ingredients.indexOf(ingredient);
 
     if (index >= 0) {
@@ -60,15 +68,30 @@ export class IngredientsFieldComponent {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.ingredients.push(event.option.viewValue);
+    const name:string = event.option.value;
+    this.ingredients.push(this._ingByName(name));
     this.ingInput.nativeElement.value = '';
     this.ingredientsCtrl.setValue(null);
+    console.log( this.ingredients);
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+  private _filter(value: string): Ingredient[] {
+    const filterValue: string = value.toLowerCase();
 
-    return this.allIngs.filter(ingredient => ingredient.toLowerCase().indexOf(filterValue) === 0);
+    return this.allIngs.filter(ingredient => ingredient.name.toLowerCase().indexOf(filterValue) === 0);
   }
+
+  private _ingByName( name:string ): Ingredient{
+    return this.allIngs.filter( ingredient => ingredient.name.toLowerCase() === name.toLowerCase())[0];
+  }
+
+  private getAllIngs(){
+     this.ingService.getAllIngs().subscribe( (data:Ingredient[]) => this.allIngs = data );
+  }
+
+  private addIng( ing: Ingredient ){
+    this.ingService.saveIng( ing ).subscribe( ing => this.ingredients.push( ing ));
+  }
+
 
 }
