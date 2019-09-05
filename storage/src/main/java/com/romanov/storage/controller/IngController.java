@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import recipes.Ingredient;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -32,4 +33,11 @@ public class IngController {
         }
         return new ResponseEntity<>( null, HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/all")
+    private List<Ingredient> getAllIngs(){
+        List<Ingredient> ings = ingRepo.findAll();
+        return ings;
+    }
 }
+

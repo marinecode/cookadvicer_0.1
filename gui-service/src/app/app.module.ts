@@ -5,12 +5,22 @@ import{BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import {MatButtonModule, MatButtonToggleModule, MatCardModule, MatToolbarModule} from '@angular/material';
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule, MatChipsModule,
+  MatFormFieldModule, MatIconModule, MatInputModule,
+  MatToolbarModule
+} from '@angular/material';
 import { HomeComponent } from './home/home.component';
-import {RouterModule} from "@angular/router";
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { MyRecipesComponent } from './my-recipes/my-recipes.component';
+import { NewRecipeComponent } from './my-recipes/new-recipe/new-recipe.component';
+import { DescriptionFieldComponent } from './my-recipes/new-recipe/description-field/description-field.component';
+import { IngredientsFieldComponent } from './my-recipes/new-recipe/ingredients-field/ingredients-field.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
@@ -21,6 +31,12 @@ import { MyRecipesComponent } from './my-recipes/my-recipes.component';
     MatCardModule,
     MatToolbarModule,
     MatButtonToggleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatIconModule,
+    MatChipsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     AppComponent,
@@ -28,7 +44,10 @@ import { MyRecipesComponent } from './my-recipes/my-recipes.component';
     HomeComponent,
     LoginComponent,
     RegistrationComponent,
-    MyRecipesComponent
+    MyRecipesComponent,
+    NewRecipeComponent,
+    DescriptionFieldComponent,
+    IngredientsFieldComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
