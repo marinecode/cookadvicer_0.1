@@ -1,9 +1,10 @@
 import {Ingredient} from "./ingredient";
-import {Type} from "./type";
+
 
 export class Recipe {
+  id:number;
   name:string;
-  type: Type;
+  type: string;
   description: string;
   ingredients: Ingredient[];
   rating: number;

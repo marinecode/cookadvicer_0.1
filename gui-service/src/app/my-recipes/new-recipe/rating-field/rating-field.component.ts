@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {MatRadioChange} from "@angular/material";
 
 @Component({
@@ -8,9 +8,12 @@ import {MatRadioChange} from "@angular/material";
 })
 export class RatingFieldComponent {
 
-
   rating: number = 1;
 
   constructor() { }
 
+  @Output() getRating = new EventEmitter<number>( );
+  onChange(){
+    this.getRating.emit( this.rating );
+  }
 }

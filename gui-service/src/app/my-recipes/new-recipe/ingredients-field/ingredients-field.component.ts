@@ -1,5 +1,5 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
@@ -23,6 +23,8 @@ export class IngredientsFieldComponent{
   filteredIngs: Observable<Ingredient[]>;
   ingredients: Ingredient[] = [];
   allIngs: Ingredient[] =[];
+
+  @Output() getIngs = new EventEmitter<Ingredient[]>();
 
 
   @ViewChild('ingInput', {static: false}) ingInput: ElementRef<HTMLInputElement>;
@@ -48,14 +50,11 @@ export class IngredientsFieldComponent{
           id: undefined };
           this.addIng( ing );
       }
-
       // Reset the input value
       if (input) {
        input.value = '';
       }
-
       this.ingredientsCtrl.setValue(null);
-
     }
   }
 
@@ -72,7 +71,7 @@ export class IngredientsFieldComponent{
     this.ingredients.push(this._ingByName(name));
     this.ingInput.nativeElement.value = '';
     this.ingredientsCtrl.setValue(null);
-    console.log( this.ingredients);
+    this.getIngs.emit( this.ingredients );
   }
 
   private _filter(value: string): Ingredient[] {

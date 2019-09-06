@@ -1,9 +1,11 @@
 
 <mat-form-field>
   <mat-label>Тип</mat-label>
-  <mat-select>
+  <mat-select  (selectionChange)="emitType( $event )" required>
     <mat-option *ngFor="let type of allTypes" [value]="type.name">
       {{type.name}}
     </mat-option>
   </mat-select>
 </mat-form-field>
+
+

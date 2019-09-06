@@ -1,18 +1,31 @@
 <mat-form-field>
   <mat-label>Название</mat-label>
-  <input matInput>
+  <input matInput [(ngModel)]="name" required>
 </mat-form-field>
 
 <div align="center">
-  <app-type-field></app-type-field>
+  <app-type-field (getType)="getType( $event )"></app-type-field>
 </div>
 <div align="center">
-  <app-description-field></app-description-field>
+  <mat-form-field >
+    <mat-label>Описание</mat-label>
+    <label>
+<textarea matInput
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="5"
+          [(ngModel)]="description"
+></textarea>
+    </label>
+  </mat-form-field>
 </div>
 <div align="center">
-  <app-ingredients-field></app-ingredients-field>
+  <app-ingredients-field (getIngs)="getIngredients( $event )" ></app-ingredients-field>
 </div>
 <div align="center">
-  <app-rating-field></app-rating-field>
+  <app-rating-field (getRating)="getRating($event)"></app-rating-field>
 </div>
-<button mat-button>Добавить</button>
+<button mat-button (click)="addRecipe()">Добавить</button>
+
+
