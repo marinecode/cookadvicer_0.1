@@ -10,7 +10,7 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatCardModule, MatChipsModule,
-  MatFormFieldModule, MatIconModule, MatInputModule, MatRadioModule, MatSelectModule,
+  MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatRadioModule, MatSelectModule, MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
 import { HomeComponent } from './home/home.component';
@@ -25,7 +25,11 @@ import {HttpClientModule} from "@angular/common/http";
 import { TypeFieldComponent } from './my-recipes/new-recipe/type-field/type-field.component';
 import {TypeService} from "./services/type.service";
 import { RatingFieldComponent } from './my-recipes/new-recipe/rating-field/rating-field.component';
-import {RecipeService} from "./my-recipes/new-recipe/recipe.service";
+import {RecipeService} from "./services/recipe.service";
+import {NameValidator} from "./my-recipes/new-recipe/name-validator";
+import { AllRecipesComponent } from './my-recipes/all-recipes/all-recipes.component';
+import { RecipeCardComponent } from './my-recipes/recipe-card/recipe-card.component';
+
 
 @NgModule({
   imports: [
@@ -45,7 +49,9 @@ import {RecipeService} from "./my-recipes/new-recipe/recipe.service";
     HttpClientModule,
     MatSelectModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
+    MatSidenavModule,
+    MatListModule
   ],
   declarations: [
     AppComponent,
@@ -57,9 +63,11 @@ import {RecipeService} from "./my-recipes/new-recipe/recipe.service";
     NewRecipeComponent,
     IngredientsFieldComponent,
     TypeFieldComponent,
-    RatingFieldComponent
+    RatingFieldComponent,
+    AllRecipesComponent,
+    RecipeCardComponent
   ],
-  providers: [IngService, TypeService, RecipeService],
+  providers: [IngService, TypeService, RecipeService, NameValidator],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

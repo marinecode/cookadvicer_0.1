@@ -1,5 +1,5 @@
-<mat-form-field class="example-chip-list" >
-  <mat-chip-list #chipList aria-label="Fruit selection">
+<mat-form-field  >
+  <mat-chip-list #chipList aria-label="Ingredients selection" [formControl]="ingsForm" >
     <mat-chip
       *ngFor="let ing of ingredients"
       [selectable]="selectable"
@@ -17,12 +17,14 @@
       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       [matChipInputAddOnBlur]="addOnBlur"
       (matChipInputTokenEnd)="add($event)"
-      required>
+      >
   </mat-chip-list>
+  <mat-error>Нужно выбрать ингредиенты</mat-error>
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"  (optionSelected)="selected($event)">
     <mat-option *ngFor="let ing of filteredIngs | async" [value]="ing.name">
       {{ing.name}}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>
+
 

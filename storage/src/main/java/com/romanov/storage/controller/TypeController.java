@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping(value = "type", produces = "application/json")
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class TypeController {
 
     @Autowired

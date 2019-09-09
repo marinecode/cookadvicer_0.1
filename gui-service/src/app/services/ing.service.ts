@@ -9,15 +9,16 @@ import {Observable} from "rxjs";
 })
 export class IngService {
 
-  ingUrl :string = '/ingredient'
+  apiUrl: string = AppSettings.API_ENDPOINT + AppSettings.Storage_ENDPOINT;
+  ingUrl :string = this.apiUrl + '/ingredient';
 
   constructor( private http: HttpClient ) { }
 
   getAllIngs(): Observable<Ingredient[]>{
-    return this.http.get<Ingredient[]>(AppSettings.Storage_ENDPOINT + this.ingUrl + '/all');
+    return this.http.get<Ingredient[]>(this.ingUrl + '/all');
   }
 
   saveIng( ing: Ingredient ): Observable<Ingredient>{
-    return this.http.post<Ingredient>(AppSettings.Storage_ENDPOINT + this.ingUrl + '/add', ing );
+    return this.http.post<Ingredient>(this.ingUrl + '/add', ing );
   }
 }

@@ -5,9 +5,11 @@ import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
 import {MyRecipesComponent} from "./my-recipes/my-recipes.component";
 import {NewRecipeComponent} from "./my-recipes/new-recipe/new-recipe.component";
+import {AllRecipesComponent} from "./my-recipes/all-recipes/all-recipes.component";
 
 const recipeRouts: Routes=[
-  {path: 'newrecipe', component: NewRecipeComponent}
+  {path: 'newrecipe', component: NewRecipeComponent},
+  {path: 'allrecipes', component: AllRecipesComponent}
   ]
 
 const routes: Routes = [

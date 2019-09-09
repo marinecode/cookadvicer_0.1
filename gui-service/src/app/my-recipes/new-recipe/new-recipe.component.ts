@@ -3,8 +3,10 @@ import {Component, ViewChild} from '@angular/core';
 
 import {Ingredient} from "../../Model/ingredient";
 import {Type} from "../../Model/type";
-import {RecipeService} from "./recipe.service";
+import {RecipeService} from "../../services/recipe.service";
 import {Recipe} from "../../Model/recipe";
+import {NameValidator} from "./name-validator";
+import { FormControl, Validators} from "@angular/forms";
 
 
 @Component({
@@ -14,16 +16,25 @@ import {Recipe} from "../../Model/recipe";
 })
 export class NewRecipeComponent {
   addedRecipe:Recipe;
-  name:string;
   rating:number;
-
   ingredients: Ingredient[] = [];
   type: Type;
   description:string;
+
+  nameForm: FormControl;
+
   @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize;
 
-  constructor( private recipeService: RecipeService ){  }
+  constructor( private recipeService: RecipeService, private nameValidator: NameValidator){
+    this.initForm();
+  }
 
+  initForm(){
+    this.nameForm = new FormControl( null,
+      {validators: [Validators.required],
+                     asyncValidators: [ this.nameValidator.validate.bind(this.nameValidator) ],
+                     updateOn: 'blur'});
+  }
 
   getIngredients( ings: any[]){
     this.ingredients = ings;
@@ -38,7 +49,9 @@ export class NewRecipeComponent {
   }
 
   addRecipe(){
-   let newRecipe: Recipe = this.recipeService.newRecipe(this.name, this.type, this.description, this.ingredients, this.rating);
+   let newRecipe: Recipe = this.recipeService.newRecipe(this.nameForm.value, this.type, this.description, this.ingredients, this.rating);
    this.recipeService.saveRecipe( newRecipe ).subscribe( (recipe :Recipe)=> this.addedRecipe = recipe );
   }
+
+
 }
