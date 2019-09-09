@@ -31,6 +31,10 @@ export class RecipeService {
     return this.http.get<string[]>( this.recipeUrl + '/names/bytype', options );
   }
 
+  getAllRecipesNames(): Observable<string[]>{
+    return this.http.get<string[]>(this.recipeUrl + '/names/all');
+  }
+
   nameValidate( name:String ): Observable<boolean>{
    return this.http.get(this.recipeUrl + '/validation/name/'+name )
      .pipe( map( value => value === 0) );

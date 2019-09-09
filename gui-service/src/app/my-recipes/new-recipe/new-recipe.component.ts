@@ -49,7 +49,9 @@ export class NewRecipeComponent {
   }
 
   addRecipe(){
-   let newRecipe: Recipe = this.recipeService.newRecipe(this.nameForm.value, this.type, this.description, this.ingredients, this.rating);
+   let name:string = this.nameForm.value;
+   name = name.substr(0,1).toUpperCase() + name.substr(1);
+   let newRecipe: Recipe = this.recipeService.newRecipe( name, this.type, this.description, this.ingredients, this.rating);
    this.recipeService.saveRecipe( newRecipe ).subscribe( (recipe :Recipe)=> this.addedRecipe = recipe );
   }
 

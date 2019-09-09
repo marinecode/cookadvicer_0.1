@@ -16,7 +16,9 @@ export class NameValidator implements AsyncValidator{
 
 
   validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
-    return this.recipeService.nameValidate( control.value )
+    let name:string = control.value;
+    name = name.substr(0,1).toUpperCase() + name.substr(1);
+    return this.recipeService.nameValidate( name )
                 .pipe( map ( isValid => isValid? null : { uniqueName: true }),
                   catchError( () => null ));
   }

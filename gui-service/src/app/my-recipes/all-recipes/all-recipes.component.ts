@@ -16,7 +16,7 @@ export class AllRecipesComponent implements OnInit {
   allTypes: Type[];
   recipeNames: string[];
   selectedType: string;
-  sekectedRecipe: Recipe;
+  selectedRecipe: Recipe;
   @ViewChild('recipesnav', { static: false }) recipeSnav: MatSidenav;
 
   constructor( private typeService: TypeService, private recipeService: RecipeService) { }
@@ -32,11 +32,17 @@ export class AllRecipesComponent implements OnInit {
     this.recipeSnav.open().then(r=>r);
   }
 
+  showAllRecipeNames( event: any ){
+    let allNamesCommand: string = event.target.value;
+    this.selectedType = allNamesCommand;
+    this.recipeService.getAllRecipesNames( ).subscribe( (data: string[]) => this.recipeNames = data );
+    this.recipeSnav.open().then(r=>r);
+  }
+
   showRecipe( event: any ){
     let recipeName: string = event.target.value;
-    this.recipeService.getRecipeByName( recipeName ).subscribe((data: Recipe)=> this.sekectedRecipe = data,
+    this.recipeService.getRecipeByName( recipeName ).subscribe((data: Recipe)=> this.selectedRecipe = data,
       error => console.log( error ));
-    console.log( this.sekectedRecipe );
   }
 
 

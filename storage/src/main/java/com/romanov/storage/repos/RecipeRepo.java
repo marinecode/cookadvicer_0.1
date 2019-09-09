@@ -12,10 +12,13 @@ public interface RecipeRepo extends JpaRepository<Recipe, Long> {
     public Optional<Recipe> findRecipeByName( String name );
 
     @Query(value = "SELECT COUNT( name ) FROM recipes WHERE name = :newname", nativeQuery = true)
-    public Integer nameContain( @Param("newname") String name );
+    public Integer nameExistence(@Param("newname") String name );
 
     @Query(value = "SELECT name FROM recipes r WHERE r.type = :type ORDER BY rating DESC ", nativeQuery = true)
     public Optional<List<String>> namesByType(@Param("type") String type);
+
+    @Query(value="SELECT name FROM recipes", nativeQuery = true )
+    public Optional<List<String>> allRecipesNames();
 }
 
 

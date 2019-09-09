@@ -3,7 +3,6 @@ package com.romanov.storage.controller;
 import com.romanov.storage.repos.RecipeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import recipes.Recipe;
@@ -28,23 +27,35 @@ public class RecipeController {
     }
 
     @PostMapping( path = "/add", consumes = "application/json")
-    private Recipe addRecipe( @RequestBody Recipe rec ){
-        recipeRepo.save( rec );
-        return rec;
+    private Recipe addRecipe( @RequestBody Recipe recipe ){
+        return recipeRepo.save( recipe );
     }
 
     @GetMapping(path = "/validation/name/{name}")
     private Integer nameValidation(@PathVariable("name") String name ){
-        return recipeRepo.nameContain(name);
+        return recipeRepo.nameExistence(name);
     }
 
     @GetMapping(path ="/names/bytype")
-    private ResponseEntity<List<String>> getNamesByType(@RequestParam("type") String type ){
+    private ResponseEntity<List<String>> getNamesByType( @RequestParam("type") String type ){
         Optional<List<String>> names = recipeRepo.namesByType( type );
-        if( names.isPresent() ){
-            return new ResponseEntity<>(names.get(), HttpStatus.OK);
+        return optionalExecute( names, HttpStatus.OK, HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping( path = "/names/all")
+    private ResponseEntity<List<String>> getAllRecipesNames(){
+        Optional<List<String>> names = recipeRepo.allRecipesNames();
+        return optionalExecute( names, HttpStatus.OK, HttpStatus.NO_CONTENT );
+    }
+
+
+    private < E > ResponseEntity< E > optionalExecute( Optional< E > optional,
+                                                       HttpStatus succsesStatus,
+                                                       HttpStatus failStatus ){
+        if( optional.isPresent() ){
+            return new ResponseEntity<>(optional.get(), succsesStatus);
         }else{
-            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(null, failStatus);
         }
     }
 }
