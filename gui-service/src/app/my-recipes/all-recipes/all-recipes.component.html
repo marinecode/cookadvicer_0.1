@@ -1,0 +1,32 @@
+<mat-sidenav-container class ='type-container'>
+  <mat-sidenav mode="side" opened class="type-sidenav">
+    <h4>Типы блюд</h4>
+    <mat-list>
+      <mat-list-item>
+        <button mat-button (click)="showAllRecipeNames($event)" value = 'Все рецепты'>Все рецепты</button>
+      </mat-list-item>
+      <mat-list-item *ngFor="let type of allTypes">
+       <button mat-button (click)="showRecipeNames($event)" value = '{{type.name}}'>{{type.name}}</button>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <mat-sidenav-container class ='recipe-container'>
+
+      <mat-sidenav #recipesnav mode="side"  class="recipe-sidenav">
+       <h4>Ищем: {{selectedType}}</h4>
+        <mat-list-item *ngFor="let name of recipeNames">
+          <button mat-button (click)="showRecipe($event)" value = '{{name}}'>{{name}}</button>
+        </mat-list-item>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <app-recipe-card *ngIf="selectedRecipe" [recipe]="selectedRecipe"></app-recipe-card>
+      </mat-sidenav-content>
+
+    </mat-sidenav-container>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

@@ -1,0 +1,13 @@
+
+<mat-form-field>
+  <mat-label>Тип</mat-label>
+  <mat-select  (selectionChange)="emitType( $event )" required [formControl]="typeControl">
+    <mat-option *ngFor="let type of allTypes" [value]="type.name">
+      {{type.name}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="typeControl.invalid">{{ getErrorMessage() }}</mat-error>
+</mat-form-field>
+
+
+

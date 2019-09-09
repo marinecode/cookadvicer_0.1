@@ -1,0 +1,32 @@
+.type-container {
+  position: absolute;
+  top: 125px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+.type-sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  background: rgba(255, 0, 0, 0.5);
+}
+
+.recipe-container{
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+
+.recipe-sidenav{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  background: rgba(255, 0, 0, 0.5);
+}

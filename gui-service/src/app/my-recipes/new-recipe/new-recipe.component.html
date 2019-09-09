@@ -1,0 +1,40 @@
+
+<form>
+  <mat-form-field>
+  <mat-label>Название</mat-label>
+  <input matInput  required [formControl]="nameForm">
+  <mat-error *ngIf="nameForm.errors?.required">Рецепту нужно название</mat-error>
+  <mat-error *ngIf="nameForm.errors?.uniqueName">Рецепт с этим именем уже есть</mat-error>
+</mat-form-field>
+
+<div align="center">
+  <app-type-field (getType)="getType( $event )"></app-type-field>
+</div>
+
+<div align="center">
+  <mat-form-field >
+    <mat-label>Описание</mat-label>
+    <label>
+<textarea matInput
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="5"
+          [(ngModel)]="description"
+          name = "desc"
+></textarea>
+    </label>
+  </mat-form-field>
+</div>
+
+<div align="center">
+  <app-ingredients-field (getIngs)="getIngredients( $event )" ></app-ingredients-field>
+</div>
+
+<div align="center">
+  <app-rating-field (getRating)="getRating($event)"></app-rating-field>
+</div>
+
+<button mat-button (click)="addRecipe()">Добавить</button>
+</form>
+

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.romanov</groupId>
-    <artifactId>cookadvicer</artifactId>
+    <artifactId>cookadvisor</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
@@ -21,7 +21,7 @@
         <module>register</module>
         <module>storage</module>
         <module>domain</module>
-        <module>gui</module>
+        <module>gui-service</module>
         <module>gateway</module>
         <module>configsrv</module>
     </modules>

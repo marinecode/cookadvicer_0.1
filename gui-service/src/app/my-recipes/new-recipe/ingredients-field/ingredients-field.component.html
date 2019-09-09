@@ -1,0 +1,30 @@
+<mat-form-field  >
+  <mat-chip-list #chipList aria-label="Ingredients selection" [formControl]="ingsForm" >
+    <mat-chip
+      *ngFor="let ing of ingredients"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(ing)">
+      {{ing.name}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <input
+      placeholder="Ингредиенты"
+      #ingInput
+      [formControl]="ingredientsCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)"
+      >
+  </mat-chip-list>
+  <mat-error>Нужно выбрать ингредиенты</mat-error>
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"  (optionSelected)="selected($event)">
+    <mat-option *ngFor="let ing of filteredIngs | async" [value]="ing.name">
+      {{ing.name}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+
