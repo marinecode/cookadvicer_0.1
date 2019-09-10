@@ -4,6 +4,7 @@ import {TypeService} from "../../services/type.service";
 import {Type} from "../../Model/type";
 import {MatSidenav} from "@angular/material";
 import {Recipe} from "../../Model/recipe";
+import {HistoryService} from "../../services/history.service";
 
 
 @Component({
@@ -19,10 +20,11 @@ export class AllRecipesComponent implements OnInit {
   selectedRecipe: Recipe;
   @ViewChild('recipesnav', { static: false }) recipeSnav: MatSidenav;
 
-  constructor( private typeService: TypeService, private recipeService: RecipeService) { }
+  constructor( private typeService: TypeService,
+               private recipeService: RecipeService) { }
 
   ngOnInit() {
-    this.typeService.getAllTypes().subscribe( (data:Type[])=> this.allTypes = data , error => console.log( error ));
+    this.typeService.getAllTypes().subscribe( (data:Type[])=> this.allTypes = data );
   }
 
   showRecipeNames( event: any ){
@@ -44,7 +46,5 @@ export class AllRecipesComponent implements OnInit {
     this.recipeService.getRecipeByName( recipeName ).subscribe((data: Recipe)=> this.selectedRecipe = data,
       error => console.log( error ));
   }
-
-
 
 }

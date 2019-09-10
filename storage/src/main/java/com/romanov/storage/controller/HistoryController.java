@@ -18,5 +18,4 @@ public class HistoryController {
         return historyRepo.save( record );
     }
 
-    
 }

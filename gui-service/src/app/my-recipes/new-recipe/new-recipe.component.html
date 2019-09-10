@@ -9,6 +9,13 @@
 
 <div align="center">
   <app-type-field (getType)="getType( $event )"></app-type-field>
+  <button mat-button matTooltip="Добавить новый тип" (click)="showAddNewTypeField()">
+    <mat-icon>add_circle</mat-icon>
+  </button>
+  <span *ngIf="addNewType">
+  <input matInput placeholder="Новый тип">
+      <button mat-button>Добавить</button>
+</span>
 </div>
 
 <div align="center">

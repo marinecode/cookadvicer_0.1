@@ -12,8 +12,8 @@
      <span *ngFor="let ing of recipe.ingredients">{{ing.name}}, </span>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button >ПРИГОТОВИТЬ</button>
-    <button mat-button >ИЗМЕНИТЬ</button>
+    <button mat-button (click)="addNewRecord()">ПРИГОТОВИТЬ</button>
+
   </mat-card-actions>
 </mat-card>
 

@@ -2,9 +2,7 @@ package history;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -12,7 +10,15 @@ import java.util.Date;
 @Table( name = "history")
 public class Record {
     @Id
-    Date prepData;
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    long id;
+
+    Date prepDate;
 
     long recipeId;
+
+    @PrePersist
+    private void setDate(){
+        this.prepDate = new Date();
+    }
 }

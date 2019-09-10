@@ -11,7 +11,7 @@ import {
   MatButtonToggleModule,
   MatCardModule, MatChipsModule,
   MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatRadioModule, MatSelectModule, MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -21,7 +21,7 @@ import { NewRecipeComponent } from './my-recipes/new-recipe/new-recipe.component
 import { IngredientsFieldComponent } from './my-recipes/new-recipe/ingredients-field/ingredients-field.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IngService} from "./services/ing.service";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { TypeFieldComponent } from './my-recipes/new-recipe/type-field/type-field.component';
 import {TypeService} from "./services/type.service";
 import { RatingFieldComponent } from './my-recipes/new-recipe/rating-field/rating-field.component';
@@ -29,6 +29,7 @@ import {RecipeService} from "./services/recipe.service";
 import {NameValidator} from "./my-recipes/new-recipe/name-validator";
 import { AllRecipesComponent } from './my-recipes/all-recipes/all-recipes.component';
 import { RecipeCardComponent } from './my-recipes/recipe-card/recipe-card.component';
+import {ErrorInterceptor} from "./interceptors/error-interceptor";
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { RecipeCardComponent } from './my-recipes/recipe-card/recipe-card.compon
     MatRadioModule,
     FormsModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
   ],
   declarations: [
     AppComponent,
@@ -67,7 +69,14 @@ import { RecipeCardComponent } from './my-recipes/recipe-card/recipe-card.compon
     AllRecipesComponent,
     RecipeCardComponent
   ],
-  providers: [IngService, TypeService, RecipeService, NameValidator],
+  providers: [
+    IngService, TypeService, RecipeService, NameValidator,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

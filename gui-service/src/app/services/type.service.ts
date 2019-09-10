@@ -16,7 +16,7 @@ export class TypeService {
   constructor( private http: HttpClient ) { }
 
   getAllTypes():Observable<Type[]>{
-    return this.http.get<Type[]>(this.typeUrl + '/all').pipe( catchError( this.handleError ));
+    return this.http.get<Type[]>(this.typeUrl + '/all');
   }
 
   saveType( type:Type ): Observable<Type>{

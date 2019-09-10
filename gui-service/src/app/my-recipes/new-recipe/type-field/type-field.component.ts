@@ -13,7 +13,8 @@ export class TypeFieldComponent  {
 
   typeControl = new FormControl('',Validators.required );
   allTypes: Type[] =[];
-
+  addTypeField: boolean = false;
+  newType:string;
 
   @Output() getType = new EventEmitter<Type>();
 
@@ -33,4 +34,16 @@ export class TypeFieldComponent  {
   getErrorMessage() {
     return this.typeControl.hasError('required') ? 'Необходимо выбрать тип':'';
   }
+
+  showAddTypeField(){
+    this.addTypeField = !this.addTypeField;
+  }
+
+  addType(){
+  let Type: Type = { name: this.newType };
+    this.typeService.saveType( Type ).subscribe();
+    this.allTypes.push( Type );
+    this.showAddTypeField();
+  }
 }
+
