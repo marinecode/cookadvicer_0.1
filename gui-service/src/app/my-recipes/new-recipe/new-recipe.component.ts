@@ -19,7 +19,6 @@ export class NewRecipeComponent {
   rating:number;
   ingredients: Ingredient[] = [];
   type: Type;
-  addNewType: boolean = false;
   description:string;
 
   nameForm: FormControl;
@@ -56,8 +55,6 @@ export class NewRecipeComponent {
    this.recipeService.saveRecipe( newRecipe ).subscribe( (recipe :Recipe)=> this.addedRecipe = recipe );
   }
 
-  showAddNewTypeField(){
-    this.addNewType= !this.addNewType;
-  }
+
 
 }

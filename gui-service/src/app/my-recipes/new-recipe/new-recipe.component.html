@@ -7,18 +7,11 @@
   <mat-error *ngIf="nameForm.errors?.uniqueName">Рецепт с этим именем уже есть</mat-error>
 </mat-form-field>
 
-<div align="center">
+<div>
   <app-type-field (getType)="getType( $event )"></app-type-field>
-  <button mat-button matTooltip="Добавить новый тип" (click)="showAddNewTypeField()">
-    <mat-icon>add_circle</mat-icon>
-  </button>
-  <span *ngIf="addNewType">
-  <input matInput placeholder="Новый тип">
-      <button mat-button>Добавить</button>
-</span>
 </div>
 
-<div align="center">
+<div >
   <mat-form-field >
     <mat-label>Описание</mat-label>
     <label>
@@ -34,14 +27,14 @@
   </mat-form-field>
 </div>
 
-<div align="center">
+<div >
   <app-ingredients-field (getIngs)="getIngredients( $event )" ></app-ingredients-field>
 </div>
 
-<div align="center">
+<div>
   <app-rating-field (getRating)="getRating($event)"></app-rating-field>
 </div>
 
-<button mat-button (click)="addRecipe()">Добавить</button>
+<button mat-button (click)="addRecipe()" [disabled]="nameForm.invalid||(!type)||(ingredients.length===0)" >Добавить</button>
 </form>
 

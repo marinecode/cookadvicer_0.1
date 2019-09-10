@@ -107,7 +107,6 @@ export class IngredientsFieldComponent implements OnInit{
 
 
 validateArrayNotEmpty(c: FormControl) {
-    // console.log(c.valid + ' chipList -' + this.chipList.errorState);
 
   if (c.value && c.value.length === 0) {
     return {

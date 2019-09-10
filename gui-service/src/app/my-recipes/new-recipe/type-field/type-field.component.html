@@ -8,7 +8,17 @@
   </mat-select>
   <mat-error *ngIf="typeControl.invalid">{{ getErrorMessage() }}</mat-error>
 </mat-form-field>
-
+<button mat-button matTooltip="Добавить новый тип" (click)="showAddTypeField()">
+  <mat-icon>add_circle</mat-icon>
+</button>
+<span *ngIf="addTypeField">
+    <mat-form-field>
+      <mat-label>Новый тип</mat-label>
+      <input matInput  required [(ngModel)]="newType">
+      <mat-error>Введите новый тип</mat-error>
+    </mat-form-field>
+  <button mat-button (click)="addType()" *ngIf="newType"><mat-icon>done</mat-icon></button>
+</span>
 
 
 

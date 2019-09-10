@@ -40,9 +40,10 @@ export class TypeFieldComponent  {
   }
 
   addType(){
-  let Type: Type = { name: this.newType };
+    let Type: Type = { name: this.newType.toLowerCase() };
     this.typeService.saveType( Type ).subscribe();
     this.allTypes.push( Type );
+    this.newType = '';
     this.showAddTypeField();
   }
 }
