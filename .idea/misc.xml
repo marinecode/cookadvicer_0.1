@@ -18,6 +18,7 @@
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
         <option value="$PROJECT_DIR$/configsrv/pom.xml" />
         <option value="$PROJECT_DIR$/gui-service/pom.xml" />
+        <option value="$PROJECT_DIR$/advisor/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {TypeService} from "../../../services/type.service";
-import {Type} from "../../../Model/type";
+import {Type} from "../../../model/type";
 import {MatSelectChange} from "@angular/material";
 import {FormControl, Validators} from "@angular/forms";
 
@@ -15,6 +15,7 @@ export class TypeFieldComponent  {
   allTypes: Type[] =[];
   addTypeField: boolean = false;
   newType:string;
+  message:string;
 
   @Output() getType = new EventEmitter<Type>();
 
@@ -40,11 +41,18 @@ export class TypeFieldComponent  {
   }
 
   addType(){
-    let Type: Type = { name: this.newType.toLowerCase() };
-    this.typeService.saveType( Type ).subscribe();
-    this.allTypes.push( Type );
-    this.newType = '';
-    this.showAddTypeField();
+    let type: Type = { name: this.newType.toLowerCase() };
+    this.typeService.saveType( type ).subscribe({
+      error: err => this.message = err.name ,
+      complete: () => {
+        this.message = 'Тип добавлен';
+        this.allTypes.push( type );
+        this.newType = '';}
+    });
+  }
+
+  resetSelectedType(){
+    this.typeControl.reset();
   }
 }
 

@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {RecipeService} from "../../services/recipe.service";
 import {TypeService} from "../../services/type.service";
-import {Type} from "../../Model/type";
+import {Type} from "../../model/type";
 import {MatSidenav} from "@angular/material";
-import {Recipe} from "../../Model/recipe";
+import {Recipe} from "../../model/recipe";
 import {HistoryService} from "../../services/history.service";
 
 

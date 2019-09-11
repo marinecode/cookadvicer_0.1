@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Recipe} from "../Model/recipe";
+import {Recipe} from "../model/recipe";
 import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {AppSettings} from "../app-settings";
-import {Type} from "../Model/type";
-import {Ingredient} from "../Model/ingredient";
+import {Type} from "../model/type";
+import {Ingredient} from "../model/ingredient";
 import {catchError, map} from "rxjs/operators";
 
 @Injectable({

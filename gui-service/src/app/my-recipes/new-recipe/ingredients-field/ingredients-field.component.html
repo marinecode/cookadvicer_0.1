@@ -1,5 +1,5 @@
 <mat-form-field  >
-  <mat-chip-list #chipList aria-label="Ingredients selection" [formControl]="ingsForm" >
+  <mat-chip-list #chipList aria-label="Ingredients selection"  >
     <mat-chip
       *ngFor="let ing of ingredients"
       [selectable]="selectable"
@@ -9,6 +9,7 @@
       <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>
     <input
+      required
       placeholder="Ингредиенты"
       #ingInput
       [formControl]="ingredientsCtrl"

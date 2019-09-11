@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Record} from "../Model/record";
+import {Record} from "../model/record";
 import {Observable} from "rxjs";
 import {AppSettings} from "../app-settings";
-import {Recipe} from "../Model/recipe";
+import {Recipe} from "../model/recipe";
 
 @Injectable({
   providedIn: 'root'

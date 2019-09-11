@@ -2,13 +2,13 @@
 <form>
   <mat-form-field>
   <mat-label>Название</mat-label>
-  <input matInput  required [formControl]="nameForm">
+  <input matInput [formControl]="nameForm">
   <mat-error *ngIf="nameForm.errors?.required">Рецепту нужно название</mat-error>
   <mat-error *ngIf="nameForm.errors?.uniqueName">Рецепт с этим именем уже есть</mat-error>
 </mat-form-field>
 
 <div>
-  <app-type-field (getType)="getType( $event )"></app-type-field>
+  <app-type-field #typeField (getType)="getType( $event )"></app-type-field>
 </div>
 
 <div >
@@ -28,13 +28,15 @@
 </div>
 
 <div >
-  <app-ingredients-field (getIngs)="getIngredients( $event )" ></app-ingredients-field>
+  <app-ingredients-field  #ingField    (getIngs)="getIngredients( $event )"></app-ingredients-field>
 </div>
 
 <div>
-  <app-rating-field (getRating)="getRating($event)"></app-rating-field>
+  <app-rating-field #ratingField (getRating)="getRating($event)"></app-rating-field>
 </div>
-
-<button mat-button (click)="addRecipe()" [disabled]="nameForm.invalid||(!type)||(ingredients.length===0)" >Добавить</button>
+<button mat-button (click)="addRecipe()" *ngIf="!(nameForm.invalid||(!type)||(ingredients.length===0))" >
+  Добавить
+</button>
+  <div *ngIf="message">{{message}}</div>
 </form>
 

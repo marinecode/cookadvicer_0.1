@@ -1,12 +1,12 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent, MatChipList} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {IngService} from "../../../services/ing.service";
-import {Ingredient} from "../../../Model/ingredient";
+import {Ingredient} from "../../../model/ingredient";
 
 @Component({
   selector: 'app-ingredients-field',
@@ -30,7 +30,7 @@ export class IngredientsFieldComponent implements OnInit{
   @ViewChild('ingInput', {static: false}) ingInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
-  ingsForm:FormControl = new FormControl( this.ingredients, this.validateArrayNotEmpty);
+  // ingsForm:FormControl = new FormControl( this.ingredients, this.validateArrayNotEmpty);
 
   constructor( private ingService: IngService ) {
 
@@ -62,6 +62,7 @@ export class IngredientsFieldComponent implements OnInit{
           name : value,
           id: undefined };
           this.addIng( ing );
+          this.getIngs.emit( this.ingredients );
       }
       // Reset the input value
       if (input) {
@@ -102,18 +103,20 @@ export class IngredientsFieldComponent implements OnInit{
   }
 
   private addIng( ing: Ingredient ){
-    this.ingService.saveIng( ing ).subscribe( ing => this.ingredients.push( ing ));
+    this.ingService.saveIng( ing ).subscribe( ing => {this.ingredients.push( ing ); this.allIngs.push( ing ) } );
   }
 
-
-validateArrayNotEmpty(c: FormControl) {
-
-  if (c.value && c.value.length === 0) {
-    return {
-      validateArrayNotEmpty: { valid: false }
-    };
+  resetIngField(){
+    this.ingredients =[];
   }
-  return null;
-}
+// validateArrayNotEmpty(c: FormControl) {
+//
+//   if (c.value && c.value.length === 0) {
+//     return {
+//       validateArrayNotEmpty: { valid: false }
+//     };
+//   }
+//   return null;
+// }
 
 }

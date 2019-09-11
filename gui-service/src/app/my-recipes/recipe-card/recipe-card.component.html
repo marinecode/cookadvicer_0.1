@@ -1,11 +1,11 @@
 <mat-card class="card">
   <mat-card-header>
-    <mat-card-title>{{recipe.name}} {{recipe.rating}}<mat-icon class="mat-icon">star</mat-icon></mat-card-title>
-    <mat-card-subtitle>{{recipe.type}}</mat-card-subtitle>
+    <mat-card-title>{{recipe.name}} </mat-card-title>
+    <mat-card-subtitle>{{recipe.type}} {{recipe.rating}}<mat-icon class="mat-icon">star</mat-icon></mat-card-subtitle>
   </mat-card-header>
    <mat-card-content>
     <p>
-      <span class ="header">Описание: </span>
+      <span class ="header" *ngIf="recipe.description">Описание: </span>
       {{recipe.description}}
     </p>
      <span class ="header">Ингредиенты: </span>

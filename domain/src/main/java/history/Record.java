@@ -15,7 +15,7 @@ public class Record {
 
     Date prepDate;
 
-    long recipeId;
+    String recipeName;
 
     @PrePersist
     private void setDate(){
