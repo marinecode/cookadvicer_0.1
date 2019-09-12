@@ -5,12 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor( access = AccessLevel.PRIVATE )
-@Table( name = "recipes")
+@Table( name = "recipes" )
 public class Recipe {
 
     @Id
@@ -21,6 +22,7 @@ public class Recipe {
     private String description;
     private short rating;
     private String type;
+    private Date lastPrep;
 
     @ManyToMany
     @JoinTable( name = "recipe_ingredients")

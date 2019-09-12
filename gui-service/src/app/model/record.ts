@@ -2,7 +2,7 @@ import {Recipe} from "./recipe";
 
 export class Record {
   id: number;
-  prep_date: Date;
+  prepDate: Date;
   recipeName: string;
 
   constructor( recipe: Recipe ){

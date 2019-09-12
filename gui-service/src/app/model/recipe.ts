@@ -8,4 +8,5 @@ export class Recipe {
   description: string;
   ingredients: Ingredient[];
   rating: number;
+  lastPrep: Date;
 }

@@ -47,7 +47,8 @@ export class RecipeService {
       type: type.name,
       description: description,
       ingredients: ings,
-      rating: rating
+      rating: rating,
+      lastPrep: null
     };
   }
 

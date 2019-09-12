@@ -10,6 +10,9 @@
     </p>
      <span class ="header">Ингредиенты: </span>
      <span *ngFor="let ing of recipe.ingredients">{{ing.name}}, </span>
+     <p>
+       <span *ngIf="recipe.lastPrep" class="header">Готовили: <span >{{recipe.lastPrep | date}}</span></span>
+     </p>
   </mat-card-content>
   <mat-card-actions>
     <button mat-button (click)="addNewRecord()">ПРИГОТОВИТЬ</button>

@@ -16,6 +16,7 @@ export class RecipeCardComponent {
 
   addNewRecord(){
     let rec:Record = this.historyService.newRecord( this.recipe );
-    this.historyService.addRecord( rec ).subscribe();
+    this.historyService.addRecord( rec ).subscribe( (data:Record) =>{this.recipe.lastPrep = data.prepDate} );
+
   }
 }
