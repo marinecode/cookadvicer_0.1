@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -26,5 +26,5 @@ public class Recipe {
 
     @ManyToMany
     @JoinTable( name = "recipe_ingredients")
-    private List<Ingredient> ingredients;
+    private Set<Ingredient> ingredients;
 }

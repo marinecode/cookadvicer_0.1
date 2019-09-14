@@ -24,6 +24,7 @@
         <module>gui-service</module>
         <module>gateway</module>
         <module>configsrv</module>
+        <module>advisor</module>
     </modules>
 
     <dependencies>

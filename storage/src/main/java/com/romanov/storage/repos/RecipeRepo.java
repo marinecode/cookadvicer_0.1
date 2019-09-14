@@ -9,16 +9,28 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RecipeRepo extends JpaRepository<Recipe, Long> {
-    public Optional<Recipe> findRecipeByName( String name );
+    Optional<Recipe> findRecipeByName(String name);
+
+    Optional<List<Recipe>> findRecipeByTypeIn(String[] typenames);
 
     @Query(value = "SELECT COUNT( name ) FROM recipes WHERE name = :newname", nativeQuery = true)
-    public Integer nameExistence(@Param("newname") String name );
+    Integer nameExistence(@Param("newname") String name);
 
     @Query(value = "SELECT name FROM recipes r WHERE r.type = :type ORDER BY rating DESC ", nativeQuery = true)
-    public Optional<List<String>> namesByType(@Param("type") String type);
+    Optional<List<String>> namesByType(@Param("type") String type);
 
     @Query(value="SELECT name FROM recipes", nativeQuery = true )
-    public Optional<List<String>> allRecipesNames();
+    Optional<List<String>> allRecipesNames();
+
+    @Query(value = "SELECT recipes.name FROM recipes WHERE NOT EXISTS " +
+                        "(SELECT ing_name " +
+                        "FROM all_recipes_with_ings "+
+                        "WHERE recipe_name = recipes.name "+
+                        "EXCEPT "+
+                        "SELECT ing_name " +
+                        "FROM all_recipes_with_ings "+
+                        "WHERE ing_name IN :ings )", nativeQuery = true )
+    Optional<List<String>> namesByIngs(@Param("ings") String[] ings);
 }
 
 
