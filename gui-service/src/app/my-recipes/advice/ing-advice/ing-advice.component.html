@@ -1,0 +1,8 @@
+<h3>Скажите что у вас есть и я посмотрю что можно приготовить</h3>
+<app-ingredients-field (getIngs)="getIngs($event)"></app-ingredients-field>
+
+<button mat-button *ngIf="selectedIngs" (click)="getIngAdvice()">Подскажи</button>
+<div *ngIf="currentRecipe!==null">
+  <app-recipe-card class = "card"  [recipe]="currentRecipe"></app-recipe-card>
+  <button mat-button (click) = "nextRecipe()">Следующий</button>
+</div>

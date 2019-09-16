@@ -13,13 +13,13 @@ import {catchError, map} from "rxjs/operators";
 export class RecipeService {
 
 
-  apiUrl:string = AppSettings.API_ENDPOINT + AppSettings.Storage_ENDPOINT;
-  recipeUrl: string =this.apiUrl + '/recipe';
+  private apiUrl:string = AppSettings.API_ENDPOINT + AppSettings.Storage_ENDPOINT;
+  private recipeUrl: string =this.apiUrl + '/recipe';
 
   constructor(  private http: HttpClient ) {  }
 
   getRecipeByName( name: string ): Observable<Recipe>{
-    return this.http.get<Recipe>( this.recipeUrl + '/'+ name).pipe( catchError( this.handleError ));
+    return this.http.get<Recipe>( this.recipeUrl + '/'+ name);
   }
 
   saveRecipe( recipe:Recipe ): Observable<Recipe>{
@@ -52,20 +52,6 @@ export class RecipeService {
     };
   }
 
-  private handleError( error: HttpErrorResponse ){
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-    // return an observable with a user-facing error message
-    return throwError(
-      'Something bad happened; please try again later.');
-  }
+
 
 }

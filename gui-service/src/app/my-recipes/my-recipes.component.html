@@ -1,5 +1,11 @@
 <mat-toolbar color="accent">
-  <a mat-button >Совет</a>
+
+  <button mat-button [matMenuTriggerFor]="menu">Совет</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['simpleAdvice']" >...простой</button>
+    <button mat-menu-item [routerLink]="['ingAdvice']">...по ингредиентам</button>
+  </mat-menu>
+
   <a mat-button [routerLink]="['allrecipes']">Все рецепты</a>
   <a mat-button [routerLink]="['newrecipe']">Добавить рецепт</a>
 </mat-toolbar>

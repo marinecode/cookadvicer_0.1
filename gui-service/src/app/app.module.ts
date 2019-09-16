@@ -9,9 +9,18 @@ import {
   MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
-  MatCardModule, MatChipsModule,
-  MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatRadioModule, MatSelectModule, MatSidenavModule,
-  MatToolbarModule, MatTooltipModule
+  MatCardModule,
+  MatChipsModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatRadioModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -30,6 +39,10 @@ import {NameValidator} from "./my-recipes/new-recipe/name-validator";
 import { AllRecipesComponent } from './my-recipes/all-recipes/all-recipes.component';
 import { RecipeCardComponent } from './my-recipes/recipe-card/recipe-card.component';
 import {ErrorInterceptor} from "./interceptors/error-interceptor";
+import { AdviceComponent } from './my-recipes/advice/advice.component';
+import {AdviceService} from "./services/advice.service";
+import { SimpleAdviceComponent } from './my-recipes/advice/simple-advice/simple-advice.component';
+import { IngAdviceComponent } from './my-recipes/advice/ing-advice/ing-advice.component';
 
 
 @NgModule({
@@ -53,7 +66,8 @@ import {ErrorInterceptor} from "./interceptors/error-interceptor";
     FormsModule,
     MatSidenavModule,
     MatListModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMenuModule
   ],
   declarations: [
     AppComponent,
@@ -67,10 +81,12 @@ import {ErrorInterceptor} from "./interceptors/error-interceptor";
     TypeFieldComponent,
     RatingFieldComponent,
     AllRecipesComponent,
-    RecipeCardComponent
+    RecipeCardComponent,
+    SimpleAdviceComponent,
+    IngAdviceComponent
   ],
   providers: [
-    IngService, TypeService, RecipeService, NameValidator,
+    IngService, TypeService, RecipeService, NameValidator, AdviceService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
