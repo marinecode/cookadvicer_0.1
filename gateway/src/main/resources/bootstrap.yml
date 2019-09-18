@@ -3,3 +3,6 @@ server:
 spring:
   application:
     name: gateway
+zuul:
+  prefix: /api
+  sensitive-headers: Cookie,Set-Cookie
