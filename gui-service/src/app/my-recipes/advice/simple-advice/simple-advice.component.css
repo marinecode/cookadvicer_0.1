@@ -1,7 +1,7 @@
-/*.card {*/
-/*  position: absolute;*/
-/*  top: 25%;*/
-/*  left: 25%;*/
-/*  width: auto;*/
-/*  max-width: 400px;*/
-/*}*/
+.card {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: auto;
+  max-width: 400px;
+}
