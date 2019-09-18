@@ -5,8 +5,9 @@ spring:
     active: default
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://localhost:8080/api/config
 security:
   oauth2:
     resource:
-      user-info-uri: http://localhost:8901/user
+      user-info-uri: http://localhost:8080/api/auth/user
+#      user-info-uri: http://localhost:8901/user

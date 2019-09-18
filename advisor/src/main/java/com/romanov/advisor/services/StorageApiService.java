@@ -1,9 +1,11 @@
 package com.romanov.advisor.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
@@ -15,11 +17,14 @@ import java.util.List;
 @Service
 public class StorageApiService {
 
+    @Autowired
+    private OAuth2RestTemplate rest;
+
     private final String gateWayUrl = "";
     private final String storageUtl =  gateWayUrl + "http://localhost:10000";
 
     ResponseEntity<List<Recipe>> getRecipeByTypes(String[] types){
-        RestTemplate rest = new RestTemplate();
+
         UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl( storageUtl + "/recipe/bytypes")
                                                           .queryParam("types", (Object[]) types).build();
 
@@ -28,7 +33,7 @@ public class StorageApiService {
     }
 
     ResponseEntity<List<String>> getRecipeNamesByIngs( String[] ings ){
-        RestTemplate rest = new RestTemplate();
+
         UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl( storageUtl + "/recipe/names/byings")
                 .queryParam("ings", (Object[]) ings).build();
 

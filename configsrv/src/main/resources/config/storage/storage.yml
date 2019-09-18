@@ -1,4 +1,5 @@
-server:
-  port: 10000
-example:
-  property: "i am in the default"
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8080/api/auth/user
