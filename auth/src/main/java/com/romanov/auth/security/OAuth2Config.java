@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
 
-@Configuration
+//@Configuration
 public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     @Autowired

@@ -1,3 +1,11 @@
 zuul:
   prefix: /api
   sensitive-headers: Cookie,Set-Cookie
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2500
