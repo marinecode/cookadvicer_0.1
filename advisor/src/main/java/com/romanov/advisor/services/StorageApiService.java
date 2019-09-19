@@ -18,7 +18,7 @@ import java.util.List;
 public class StorageApiService {
 
     @Autowired
-    private OAuth2RestTemplate rest;
+    private RestTemplate rest;
 
     private final String gateWayUrl = "";
     private final String storageUtl =  gateWayUrl + "http://localhost:10000";

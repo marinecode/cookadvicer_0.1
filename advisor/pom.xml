@@ -9,7 +9,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.romanov</groupId>
+
     <artifactId>advisor</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>advisor</name>
@@ -47,6 +47,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-jwt</artifactId>
+            <version>1.0.10.RELEASE</version>
         </dependency>
     </dependencies>
 
