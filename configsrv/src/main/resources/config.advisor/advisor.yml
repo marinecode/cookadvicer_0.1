@@ -1,4 +1,0 @@
-security:
-  oauth2:
-    resource:
-      user-info-uri: http://localhost:8080/api/auth/user

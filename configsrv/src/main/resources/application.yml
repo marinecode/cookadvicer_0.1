@@ -9,6 +9,9 @@ spring:
     config:
       server:
         native:
-          search-locations: D:/Артёмина папка/ПРогим/Project/cookadvicer/configsrv/src/main/resources/config/storage
+          search-locations: D:/Артёмина папка/ПРогим/Project/cookadvicer/configsrv/src/main/resources/config/storage,
+                            D:/Артёмина папка/ПРогим/Project/cookadvicer/configsrv/src/main/resources/config/auth,
+                            D:/Артёмина папка/ПРогим/Project/cookadvicer/configsrv/src/main/resources/config/advisor,
+                            D:/Артёмина папка/ПРогим/Project/cookadvicer/configsrv/src/main/resources/config/gateway
 
 

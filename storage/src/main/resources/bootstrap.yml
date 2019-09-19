@@ -1,3 +1,8 @@
+server:
+   port: 10000
+
+
+
 spring:
   application:
     name: storage
@@ -5,9 +10,19 @@ spring:
     active: default
   cloud:
     config:
-      uri: http://localhost:8080/api/config
+#      uri: http://localhost:8080/api/config
+        uri: http://localhost:8888
+  datasource:
+    url: jdbc:postgresql://localhost:5432/recipesStorage
+    username: "Artem"
+    password: "000"
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+
 security:
   oauth2:
     resource:
-      user-info-uri: http://localhost:8080/api/auth/user
-#      user-info-uri: http://localhost:8901/user
+#      user-info-uri: http://localhost:8080/api/auth/user
+      user-info-uri: http://localhost:8901/user

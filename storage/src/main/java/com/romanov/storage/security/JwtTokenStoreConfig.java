@@ -1,19 +1,17 @@
-package com.romanov.auth.security;
+package com.romanov.storage.security;
 
-import com.romanov.auth.config.ServiceConfig;
+import com.romanov.storage.config.ServiceConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
-import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
-public class JwtTokenStoreConfig {
-
+public class JwtTokenStoreConfig  {
 
     private ServiceConfig serviceConfig;
 
@@ -24,7 +22,7 @@ public class JwtTokenStoreConfig {
 
     @Bean
     public TokenStore tokenStore(){
-        return new JwtTokenStore( jwtAccessTokenConverter());
+        return new JwtTokenStore( jwtAccessTokenConverter() );
     }
 
     @Bean
@@ -37,19 +35,10 @@ public class JwtTokenStoreConfig {
     }
 
     @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter converter =
-                new JwtAccessTokenConverter();
-        converter
-                .setSigningKey(serviceConfig.getJwtSigningKey());
-
-
+    public JwtAccessTokenConverter jwtAccessTokenConverter(){
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey( serviceConfig.getJwtSignKey() );
         return converter;
     }
 
-    //Нужен для добавления добполнительой информации в токен
-//    @Bean
-//    public TokenEnhancer jwtTokenEnhancer() {
-//        return new JWTTokenEnhancer();
-//    }
 }
