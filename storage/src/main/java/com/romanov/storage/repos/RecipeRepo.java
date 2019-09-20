@@ -13,8 +13,7 @@ public interface RecipeRepo extends JpaRepository<Recipe, Long> {
 
     Optional<List<Recipe>> findRecipeByTypeIn(String[] typenames);
 
-    @Query(value = "SELECT COUNT( name ) FROM recipes WHERE name = :newname", nativeQuery = true)
-    Integer nameExistence(@Param("newname") String name);
+    Boolean existsByName( String name );
 
     @Query(value = "SELECT name FROM recipes r WHERE r.type = :type ORDER BY rating DESC ", nativeQuery = true)
     Optional<List<String>> namesByType(@Param("type") String type);

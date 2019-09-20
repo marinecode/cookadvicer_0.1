@@ -19,7 +19,6 @@ export class NameValidator implements AsyncValidator{
     let name:string = control.value;
     name = name.substr(0,1).toUpperCase() + name.substr(1);
     return this.recipeService.nameValidate( name )
-                .pipe( map ( isValid => isValid? null : { uniqueName: true }),
-                  catchError( () => null ));
+                .pipe( map ( isValid => isValid? { uniqueName: true } : null));
   }
 }
