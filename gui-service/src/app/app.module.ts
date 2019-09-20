@@ -18,7 +18,7 @@ import {
   MatMenuModule,
   MatRadioModule,
   MatSelectModule,
-  MatSidenavModule,
+  MatSidenavModule, MatTabsModule,
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
@@ -39,10 +39,11 @@ import {NameValidator} from "./my-recipes/new-recipe/name-validator";
 import { AllRecipesComponent } from './my-recipes/all-recipes/all-recipes.component';
 import { RecipeCardComponent } from './my-recipes/recipe-card/recipe-card.component';
 import {ErrorInterceptor} from "./interceptors/error-interceptor";
-import { AdviceComponent } from './my-recipes/advice/advice.component';
 import {AdviceService} from "./services/advice.service";
 import { SimpleAdviceComponent } from './my-recipes/advice/simple-advice/simple-advice.component';
 import { IngAdviceComponent } from './my-recipes/advice/ing-advice/ing-advice.component';
+import {AuthService} from "./services/auth.service";
+import {JwtModule} from "@auth0/angular-jwt";
 
 
 @NgModule({
@@ -62,12 +63,21 @@ import { IngAdviceComponent } from './my-recipes/advice/ing-advice/ing-advice.co
     ReactiveFormsModule,
     HttpClientModule,
     MatSelectModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: ()=> {return localStorage.getItem('access_token')},
+        whitelistedDomains: ["localhost:8080","localhost:10000"],
+        blacklistedRoutes: ["localhost:8901"],
+        throwNoTokenError: true
+      }
+    }),
     MatRadioModule,
     FormsModule,
     MatSidenavModule,
     MatListModule,
     MatTooltipModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule
   ],
   declarations: [
     AppComponent,
@@ -86,7 +96,7 @@ import { IngAdviceComponent } from './my-recipes/advice/ing-advice/ing-advice.co
     IngAdviceComponent
   ],
   providers: [
-    IngService, TypeService, RecipeService, NameValidator, AdviceService,
+    IngService, TypeService, RecipeService, NameValidator, AdviceService, AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,

@@ -1,5 +1,6 @@
 package recipes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,4 +16,7 @@ public class Type {
     @Id
     @Column( name = "type_name" )
     private String name;
+
+    @JsonIgnore
+    private String creator;
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
+import {AuthService} from "../services/auth.service";
+import {UserLogin, UserReg} from "../model/user";
 
 @Component({
   selector: 'app-login',
@@ -8,11 +10,25 @@ import {FormControl, Validators} from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
 
-  loginControl: FormControl = new FormControl(null, {validators: [Validators.required]});
+  user:UserLogin = new UserLogin();
+  userReg:UserReg = new UserReg();
+  repeatPass:string;
+  errorMessage:string = '';
 
-  constructor() { }
+  networkProblem:boolean = false;
+
+  constructor( private authService: AuthService ) { }
 
   ngOnInit() {
   }
 
+  login(){
+    this.authService.login( this.user,
+      ()=> console.log( this.user.username + 'вошел' ),
+      error => console.log('Ошибка из метода логин ' +  error.error ));
+  }
+
+  register(){
+    console.log( this.userReg );
+  }
 }
