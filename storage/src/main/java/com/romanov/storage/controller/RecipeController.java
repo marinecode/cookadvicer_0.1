@@ -1,6 +1,7 @@
 package com.romanov.storage.controller;
 
 import com.romanov.storage.repos.RecipeRepo;
+import com.romanov.storage.util.UserContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,7 @@ public class RecipeController {
 
     @PostMapping( path = "/add", consumes = "application/json")
     private Recipe addRecipe( @RequestBody Recipe recipe ){
+        recipe.setCreator( UserContextHolder.getContext().getUserName() );
         return recipeRepo.save( recipe );
     }
 
