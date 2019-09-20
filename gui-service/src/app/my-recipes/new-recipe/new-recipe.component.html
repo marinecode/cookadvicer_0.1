@@ -5,7 +5,7 @@
   <input matInput [formControl]="nameForm">
   <mat-error *ngIf="nameForm.errors?.required">Рецепту нужно название</mat-error>
   <mat-error *ngIf="nameForm.errors?.uniqueName">Рецепт с этим именем уже есть</mat-error>
-</mat-form-field>
+  </mat-form-field>
 
 <div>
   <app-type-field #typeField (getType)="getType( $event )"></app-type-field>

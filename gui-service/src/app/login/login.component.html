@@ -1,2 +1,25 @@
-<p>login works!</p>
-<a mat-button [routerLink]="['registration']">Зарегистрироваться</a>
+<h1>Login</h1>
+<form [formControl]="loginControl">
+  <table>
+    <tr>
+      <td>User:</td>
+      <td>
+        <mat-form-field>
+          <input type='text' name='username' value=''>
+         </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>Password:</td>
+      <td>
+        <mat-form-field>
+          <input type='text' name='password' value=''>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td><input name="submit" type="submit" value="submit" /></td>
+    </tr>
+  </table>
+</form>
+<p *ngIf="loginControl.invalid">Ошибка</p>
