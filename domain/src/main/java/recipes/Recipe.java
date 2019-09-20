@@ -1,5 +1,6 @@
 package recipes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,8 +24,11 @@ public class Recipe {
     private short rating;
     private String type;
     private Date lastPrep;
+    @JsonIgnore
+    private String creator;
 
     @ManyToMany
     @JoinTable( name = "recipe_ingredients")
     private Set<Ingredient> ingredients;
+
 }
