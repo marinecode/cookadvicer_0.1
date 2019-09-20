@@ -38,8 +38,8 @@ public class RecipeController {
     }
 
     @GetMapping(path = "/validation/name/{name}")
-    private Integer nameValidation(@PathVariable("name") String name ){
-        return recipeRepo.nameExistence(name);
+    private Boolean nameValidation(@PathVariable("name") String name ){
+        return recipeRepo.existsByName(name);
     }
 
 
