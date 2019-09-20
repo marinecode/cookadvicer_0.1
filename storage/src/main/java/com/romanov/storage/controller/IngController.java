@@ -20,7 +20,6 @@ public class IngController {
 
     @PostMapping(value = "add", consumes = "application/json")
     private Ingredient addIng( @RequestBody Ingredient ing ){
-        System.out.println( ing.getName() );
         ingRepo.save( ing );
         return ing;
     }
