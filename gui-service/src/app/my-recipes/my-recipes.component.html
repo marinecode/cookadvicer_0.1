@@ -1,3 +1,4 @@
+<div  [appProtected]="true">
 <mat-toolbar color="accent">
 
   <button mat-button [matMenuTriggerFor]="menu">Совет</button>
@@ -8,8 +9,11 @@
 
   <a mat-button [routerLink]="['allrecipes']">Все рецепты</a>
   <a mat-button [routerLink]="['newrecipe']">Добавить рецепт</a>
+  <span class = "spacer"></span>
+  <span >Сейчас голодает {{user.username}}</span>
 </mat-toolbar>
 
 <div>
   <router-outlet></router-outlet>
+</div>
 </div>

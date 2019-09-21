@@ -30,6 +30,7 @@ public class UserContextFilter implements Filter {
 
         UserContextHolder.getContext().setAuthToken( token );
         UserContextHolder.getContext().setUserName( userName );
+
         filterChain.doFilter(httpServletRequest, servletResponse);
     }
 

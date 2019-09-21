@@ -11,7 +11,7 @@
           <mat-form-field>
             <input matInput type="password" placeholder="Пароль" [(ngModel)]="user.password">
           </mat-form-field>
-          <mat-label class="error-label">{{errorMessage}}</mat-label>
+          <mat-label class="error-label">{{loginErrorMessage}}</mat-label>
           <button mat-raised-button color="primary" (click)="login()">Войти</button>
          </div>
       </mat-tab>
@@ -31,7 +31,7 @@
             <input matInput placeholder="E-mail" id="email" [(ngModel)]="userReg.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
           </mat-form-field>
           <button mat-raised-button color="primary" (click)="register()">Зарегистрироваться</button>
-          <span class="error-label" *ngIf="networkProblem">Не удалось зарегистрироваться!</span>
+          <span >{{registerErrorMessage}}</span>
         </div>
       </mat-tab>
     </mat-tab-group>

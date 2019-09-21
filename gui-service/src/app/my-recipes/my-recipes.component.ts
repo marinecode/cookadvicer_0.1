@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../model/user";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-my-recipes',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyRecipesComponent implements OnInit {
 
-  constructor() { }
+  user: User;
+  constructor( private authService:AuthService) {
+    this.user = this.authService.user;
+  }
 
   ngOnInit() {
   }

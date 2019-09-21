@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {UserLogin, UserReg} from "../model/user";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -13,22 +13,35 @@ export class LoginComponent implements OnInit {
   user:UserLogin = new UserLogin();
   userReg:UserReg = new UserReg();
   repeatPass:string;
-  errorMessage:string = '';
+  loginErrorMessage: string = '';
+  registerErrorMessage: string='';
 
-  networkProblem:boolean = false;
 
-  constructor( private authService: AuthService ) { }
+  constructor( private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   login(){
     this.authService.login( this.user,
-      ()=> console.log( this.user.username + 'вошел' ),
-      error => console.log('Ошибка из метода логин ' +  error.error ));
+      ()=>{ console.log( this.user.username + ' вошел' );
+                      this.router.navigateByUrl('/recipes/allrecipes').then();
+                      },
+      error => { if(error.status === 0){ this.loginErrorMessage = 'Проблемы с нашим сервером';}
+                              if(error.status === 500){ this.loginErrorMessage = 'Неверные данные';}});
   }
 
+  //при успешной регистрации сразу логинимся
   register(){
-    console.log( this.userReg );
+    this.authService.register( this.userReg,
+      ()=> { this.authService.login( this.userReg,
+        ()=>{ console.log( this.userReg.username + ' вошел' );
+                         this.router.navigateByUrl('/recipes/allrecipes').then();},
+            error => console.log('Ошибка из метода логин ' +  error.error ));}
+        ,error=> { if(error.status === 0){ this.registerErrorMessage = 'Не удалось зарегистрироваться'; }
+                              if(error.status===409){this.registerErrorMessage = 'Такой пользователь уже зарегистрирован'}
+                     });
   }
+
+
 }

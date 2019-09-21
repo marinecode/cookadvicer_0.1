@@ -3,7 +3,8 @@
  <h1><span class="light">COOK</span>ADVISOR</h1>
   <span class="spacer"></span>
   <a mat-button [routerLink]="['home']" routerLinkActive="active">ГЛАВНАЯ</a>
-  <a mat-button [routerLink]="['login']" routerLinkActive="active">ВОЙТИ</a>
+  <a mat-button *ngIf="loggedIn" (click)="logout()">ВЫЙТИ</a>
+  <a mat-button *ngIf="!loggedIn" [routerLink]="['login']" routerLinkActive="active">ВОЙТИ</a>
   <a mat-button [routerLink]="['recipes/allrecipes']" routerLinkActive="active">МОИ РЕЦЕПТЫ</a>
 </mat-toolbar>
 

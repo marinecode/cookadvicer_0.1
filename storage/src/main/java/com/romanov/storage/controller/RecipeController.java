@@ -29,6 +29,7 @@ public class RecipeController {
     @PostMapping( path = "/add", consumes = "application/json")
     private Recipe addRecipe( @RequestBody Recipe recipe ){
         recipe.setCreator( UserContextHolder.getContext().getUserName() );
+
         return recipeRepo.save( recipe );
     }
 
