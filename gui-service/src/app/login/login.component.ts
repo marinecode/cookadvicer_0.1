@@ -23,12 +23,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+
     this.authService.login( this.user,
       ()=>{ console.log( this.user.username + ' вошел' );
                       this.router.navigateByUrl('/recipes/allrecipes').then();
                       },
       error => { if(error.status === 0){ this.loginErrorMessage = 'Проблемы с нашим сервером';}
-                              if(error.status === 500){ this.loginErrorMessage = 'Неверные данные';}});
+                              if(error.status === 500){ this.loginErrorMessage = 'Неверные данные';}
+    else {console.log(error)}});
   }
 
   //при успешной регистрации сразу логинимся
@@ -40,6 +42,7 @@ export class LoginComponent implements OnInit {
             error => console.log('Ошибка из метода логин ' +  error.error ));}
         ,error=> { if(error.status === 0){ this.registerErrorMessage = 'Не удалось зарегистрироваться'; }
                               if(error.status===409){this.registerErrorMessage = 'Такой пользователь уже зарегистрирован'}
+                              else { console.log( error )}
                      });
   }
 
