@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Entity
@@ -23,11 +24,26 @@ public class User {
 
     @NotBlank
     @NotNull
-    @JsonIgnore
     private String password;
 
-    @NotBlank
     @JsonIgnore
+    public String getPassword() {
+        return password;
+    }
+    @JsonProperty
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    @JsonIgnore
+    public String getEmail() {
+        return email;
+    }
+    @JsonProperty
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @NotBlank
     private String email;
 
     @ManyToOne
