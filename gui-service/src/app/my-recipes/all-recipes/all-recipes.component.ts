@@ -4,7 +4,6 @@ import {TypeService} from "../../services/type.service";
 import {Type} from "../../model/type";
 import {MatSidenav} from "@angular/material";
 import {Recipe} from "../../model/recipe";
-import {HistoryService} from "../../services/history.service";
 
 
 @Component({
@@ -27,7 +26,7 @@ export class AllRecipesComponent implements OnInit {
     this.typeService.getAllTypes().subscribe( (data:Type[])=> this.allTypes = data );
   }
 
-  showRecipeNames( event: any ){
+  showRecipeNamesByType( event: any ){
     let typename: string = event.target.value;
     this.selectedType = typename;
     this.recipeService.getRecipeNamesByTypename( typename ).subscribe( (data: string[]) => this.recipeNames = data );
@@ -35,8 +34,7 @@ export class AllRecipesComponent implements OnInit {
   }
 
   showAllRecipeNames( event: any ){
-    let allNamesCommand: string = event.target.value;
-    this.selectedType = allNamesCommand;
+    this.selectedType = event.target.value;
     this.recipeService.getAllRecipesNames( ).subscribe( (data: string[]) => this.recipeNames = data );
     this.recipeSnav.open().then(r=>r);
   }

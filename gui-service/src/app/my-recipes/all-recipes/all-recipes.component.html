@@ -6,7 +6,7 @@
         <button mat-button (click)="showAllRecipeNames($event)" value = 'Все рецепты'>Все рецепты</button>
       </mat-list-item>
       <mat-list-item *ngFor="let type of allTypes">
-       <button mat-button (click)="showRecipeNames($event)" value = '{{type.name}}'>{{type.name}}</button>
+       <button mat-button (click)="showRecipeNamesByType($event)" value = '{{type.name}}'>{{type.name}}</button>
       </mat-list-item>
     </mat-list>
   </mat-sidenav>
@@ -16,6 +16,7 @@
 
       <mat-sidenav #recipesnav mode="side"  class="recipe-sidenav">
        <h4>Ищем: {{selectedType}}</h4>
+        <mat-list-item *ngIf="noContent">У вас пока нет таких рецептов</mat-list-item>
         <mat-list-item *ngFor="let name of recipeNames">
           <button mat-button (click)="showRecipe($event)" value = '{{name}}'>{{name}}</button>
         </mat-list-item>

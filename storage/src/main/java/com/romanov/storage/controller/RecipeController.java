@@ -46,19 +46,19 @@ public class RecipeController {
 
     @GetMapping(path ="/names/bytype")
     private ResponseEntity<List<String>> getNamesByType( @RequestParam("type") String type ){
-        Optional<List<String>> names = recipeRepo.namesByType( type );
+        Optional<List<String>> names = recipeRepo.namesByTypeAndAndCreator( type , UserContextHolder.getContext().getUserName());
         return optionalExecute( names, HttpStatus.OK, HttpStatus.NO_CONTENT);
     }
 
     @GetMapping( path = "/names/all")
     private ResponseEntity<List<String>> getAllRecipesNames(){
-        Optional<List<String>> names = recipeRepo.allRecipesNames();
+        Optional<List<String>> names = recipeRepo.allRecipesNamesByCreator( UserContextHolder.getContext().getUserName() );
         return optionalExecute( names, HttpStatus.OK, HttpStatus.NO_CONTENT );
     }
 
     @GetMapping(path = "/names/byings")
     private ResponseEntity<List<String>> getNamesByIng ( @RequestParam("ings") String[] ings ){
-        Optional<List<String>> names = recipeRepo.namesByIngs( ings );
+        Optional<List<String>> names = recipeRepo.namesByIngsAndCreator( ings, UserContextHolder.getContext().getUserName() );
         return optionalExecute( names, HttpStatus.OK, HttpStatus.NO_CONTENT );
     }
 
