@@ -12,8 +12,8 @@ export class AuthService {
 
   private apiUrl:string = AppSettings.API_ENDPOINT;
   private authUrl:string = AppSettings.AUTH_ENDPOINT;
-  private loginUrl= this.apiUrl + this.authUrl + '/oauth/token';
-  private registerUrl = this.apiUrl + this.authUrl + '/users/register';
+  private loginUrl= this.authUrl + '/oauth/token';
+  private registerUrl = this.authUrl + '/users/register';
 
   user: User;
 
