@@ -24,7 +24,6 @@ import {
 } from '@angular/material';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
 import { MyRecipesComponent } from './my-recipes/my-recipes.component';
 import { NewRecipeComponent } from './my-recipes/new-recipe/new-recipe.component';
 import { IngredientsFieldComponent } from './my-recipes/new-recipe/ingredients-field/ingredients-field.component';
@@ -85,7 +84,6 @@ import {ProtectDirective} from "./directives/protect.directive";
     TopBarComponent,
     HomeComponent,
     LoginComponent,
-    RegistrationComponent,
     MyRecipesComponent,
     NewRecipeComponent,
     IngredientsFieldComponent,
