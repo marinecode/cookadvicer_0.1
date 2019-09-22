@@ -8,7 +8,7 @@ spring:
       uri: http://localhost:8888
 #      uri: http://localhost:8080/api/config
 server:
-  port: 0
+  port: 10001
 #security:
 #  oauth2:
 #    client:
