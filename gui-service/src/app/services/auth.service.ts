@@ -51,14 +51,14 @@ export class AuthService {
       );
   }
 
-  register( user: UserReg, onSuccess?, errorHandler? ){
+  public register( user: UserReg, onSuccess?, errorHandler? ){
     this.http.post( this.registerUrl, user).subscribe(
       (createdUser:User) =>{ this.user = createdUser;
                                     onSuccess();},
       error => errorHandler(error))
   }
 
-  logout(){
+  public logout(){
     localStorage.removeItem('access_token');
     this.eventEmitter.emit(false);
   }
