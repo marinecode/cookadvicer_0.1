@@ -1,6 +1,11 @@
 zuul:
   prefix: /api
   sensitive-headers: Cookie,Set-Cookie
+  routes:
+    config:
+      path: /config/**
+      url: http://localhost:8888
+
 
 hystrix:
   command:

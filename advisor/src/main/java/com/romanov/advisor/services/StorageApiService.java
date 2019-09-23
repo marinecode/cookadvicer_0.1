@@ -1,6 +1,8 @@
 package com.romanov.advisor.services;
 
+import com.romanov.advisor.config.ServiceConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -19,22 +21,22 @@ public class StorageApiService {
 
     @Autowired
     private RestTemplate rest;
+    @Autowired
+    private ServiceConfig config;
 
-    private final String gateWayUrl = "";
-    private final String storageUtl =  gateWayUrl + "http://localhost:10000";
 
     ResponseEntity<List<Recipe>> getRecipeByTypes(String[] types){
 
-        UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl( storageUtl + "/recipe/bytypes")
+        UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl( config.getStorageUrl() + "/recipe/bytypes")
                                                           .queryParam("types", (Object[]) types).build();
-
+        System.out.println(uriComponents.toUriString());
         return rest.exchange( uriComponents.toUriString(), HttpMethod.GET, HttpEntity.EMPTY,
                 new ParameterizedTypeReference<List<Recipe>>() {});
     }
 
     ResponseEntity<List<String>> getRecipeNamesByIngs( String[] ings ){
 
-        UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl( storageUtl + "/recipe/names/byings")
+        UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl( config.getStorageUrl() + "/recipe/names/byings")
                 .queryParam("ings", (Object[]) ings).build();
 
         return rest.exchange( uriComponents.toUriString(), HttpMethod.GET, HttpEntity.EMPTY,
