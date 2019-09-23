@@ -2,6 +2,7 @@
 <app-ingredients-field (getIngs)="getIngs($event)"></app-ingredients-field>
 
 <button mat-button *ngIf="selectedIngs" (click)="getIngAdvice()">Подскажи</button>
+<mat-error *ngIf="networkProblem">Проблемы с сервером или интернетом</mat-error>
 <div *ngIf="currentRecipe!==null">
   <app-recipe-card class = "card"  [recipe]="currentRecipe"></app-recipe-card>
   <button mat-button (click) = "nextRecipe()">Следующий</button>

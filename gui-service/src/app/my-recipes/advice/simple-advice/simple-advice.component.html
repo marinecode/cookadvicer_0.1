@@ -6,6 +6,7 @@
   </mat-select>
 </mat-form-field>
 <button mat-button *ngIf="typeControl.value" (click)="getSimpleAdvice()">Подскажи</button>
+<mat-error *ngIf="networkProblem">Проблемы с сервером или интернетом</mat-error>
 
 <div *ngIf="currentRecipe!==null">
   <app-recipe-card class = "card"  [recipe]="currentRecipe"></app-recipe-card>

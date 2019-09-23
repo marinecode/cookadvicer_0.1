@@ -20,6 +20,7 @@ export class SimpleAdviceComponent extends AdviceComponent implements OnInit {
     super( recipeService );
   }
 
+  networkProblem:boolean = false;
   allTypes: Type[] = [];
   typeControl: FormControl = new FormControl();
 
@@ -30,8 +31,14 @@ export class SimpleAdviceComponent extends AdviceComponent implements OnInit {
   getSimpleAdvice(){
     let types:Type[] = this.typeControl.value;
     let typeNames: string[] = types.map<string>( t=> t.name );
-    this.adviceService.getSimpleAdvice( typeNames ).subscribe( (data:string[])=> this.adviceResult = data,
-      null,
+    this.adviceService.getSimpleAdvice( typeNames ).subscribe(
+      (data:string[])=> {this.adviceResult = data;
+                              this.networkProblem = false;},
+      error => {if(error.status === 0 ) {
+                        this.networkProblem = true
+                      }else{
+                        console.log(error);
+                      } },
       () => this.nextRecipe());
   }
 }

@@ -63,7 +63,7 @@ export class NewRecipeComponent {
    let newRecipe: Recipe = this.recipeService.newRecipe( name, this.type, this.description, this.ingredients, this.rating);
    this.recipeService.saveRecipe( newRecipe ).subscribe(
      (recipe :Recipe)=> this.addedRecipe = recipe,
-     error => this.message = 'Похоже проблемы с сервером или интернетом '+ error.name ,
+     error => this.message = 'Похоже проблемы с сервером или интернетом',
      () => {this.message = 'Рецепт '+ this.addedRecipe.name +' сохранен!'; this.refreshForm()});
   }
 

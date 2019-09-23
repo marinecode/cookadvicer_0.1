@@ -12,6 +12,7 @@ import {Ingredient} from "../../../model/ingredient";
 })
 export class IngAdviceComponent extends AdviceComponent{
 
+  networkProblem:boolean = false;
   selectedIngs: Ingredient[];
 
   constructor( private adviceService: AdviceService, recipeService: RecipeService ) {
@@ -25,8 +26,15 @@ export class IngAdviceComponent extends AdviceComponent{
 
   getIngAdvice(){
      let ingsNames:string[] = this.selectedIngs.map<string>( (i:Ingredient)=> i.name );
-     this.adviceService.getIngAdvice( ingsNames ).subscribe( (data: string[])=> this.adviceResult = data,
-       null, ()=>this.nextRecipe())
+     this.adviceService.getIngAdvice( ingsNames ).subscribe(
+       (data: string[])=> {this.adviceResult = data;
+                                this.networkProblem = false;},
+
+       error => {if(error.status === 0) {
+                          this.networkProblem = true;
+                        }else{
+                          console.log(error);}} ,
+       ()=>this.nextRecipe())
   }
 
 

@@ -16,6 +16,7 @@ export class TypeFieldComponent  {
   addTypeField: boolean = false;
   newType:string;
   message:string;
+  networkProblem:boolean = false;
 
   @Output() getType = new EventEmitter<Type>();
 
@@ -24,7 +25,8 @@ export class TypeFieldComponent  {
   }
 
   getAllTypes(){
-    this.typeService.getAllTypes().subscribe( ( data: Type[] )=> this.allTypes = data );
+    this.typeService.getAllTypes().subscribe( ( data: Type[] )=> this.allTypes = data,
+      error => { if(error.status === 0 ) this.networkProblem = true;} );
   }
 
   emitType( event: MatSelectChange ){
