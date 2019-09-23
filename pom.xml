@@ -25,6 +25,7 @@
         <module>gateway</module>
         <module>configsrv</module>
         <module>advisor</module>
+        <module>postman</module>
     </modules>
 
     <dependencies>

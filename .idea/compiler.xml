@@ -14,6 +14,7 @@
         <module name="storage" />
         <module name="register" />
         <module name="domain" />
+        <module name="postman" />
         <module name="gui-service" />
       </profile>
     </annotationProcessing>
@@ -37,6 +38,7 @@
       <module name="gateway" options="" />
       <module name="gui" options="" />
       <module name="gui-service" options="" />
+      <module name="postman" options="" />
       <module name="register" options="" />
       <module name="storage" options="" />
       <module name="ui" options="" />

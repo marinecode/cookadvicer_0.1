@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: postman
+  mail:
+   host: smtp.yandex.ru
+   username: artem.romanov.nn@yandex.ru
+   password: kgtlspacpwmnuewq
+   properties:
+    mail:
+      transport:
+        protocol: smtp
+      smtp:
+        port: 25
+        auth: true
+        starttls:
+          enable: true
+          required: true
