@@ -10,7 +10,6 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.romanov</groupId>
     <artifactId>storage</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>storage</name>

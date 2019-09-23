@@ -1,17 +1,25 @@
+
 spring:
   application:
     name: postman
+  cloud:
+    config:
+      uri: http://localhost:8080/api/config
   mail:
-   host: smtp.yandex.ru
-   username: artem.romanov.nn@yandex.ru
-   password: kgtlspacpwmnuewq
+   host: smtp.gmail.com
+   username: artempomanov@gmail.com
+   password: "freyhjhxnopqnbfl"
    properties:
     mail:
       transport:
         protocol: smtp
       smtp:
-        port: 25
+        ssl:
+          trust: "*"
+        port: 587
         auth: true
         starttls:
           enable: true
           required: true
+server:
+  port: 10002

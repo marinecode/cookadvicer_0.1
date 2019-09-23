@@ -16,7 +16,7 @@ public class EmailServiceImpl {
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
-        message.setFrom("artem.romanov.nn@yandex.ru");
+        message.setFrom("artempomanov@gmail.com");
         emailSender.send(message);
     }
 }

@@ -22,7 +22,7 @@ public class PostmanApplication {
             @Override
             public void run(String... args) throws Exception {
                 System.out.println("Сейчас пошлю письмо");
-                emailService.sendSimpleMessage( "artempomanov@gmail.com", "Привет из Java", "Весенний привет!");
+                emailService.sendSimpleMessage( "artem.romanov.nn@yandex.ru", "Привет из Java", "Весенний привет!");
                 System.out.println("Послал, проверяй");
             }
         };
