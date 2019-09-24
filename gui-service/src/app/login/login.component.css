@@ -1,0 +1,11 @@
+.login-card{
+  width: 340px;
+  height: auto;
+  position: relative;
+  left: 35%;
+  top:50px;
+
+}
+.form-wrapper{
+  text-align: center;
+}

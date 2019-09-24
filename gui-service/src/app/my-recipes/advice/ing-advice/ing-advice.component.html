@@ -1,9 +1,12 @@
-<h3>Скажите что у вас есть и я посмотрю что можно приготовить</h3>
-<app-ingredients-field (getIngs)="getIngs($event)"></app-ingredients-field>
-
-<button mat-button *ngIf="selectedIngs" (click)="getIngAdvice()">Подскажи</button>
-<mat-error *ngIf="networkProblem">Проблемы с сервером или интернетом</mat-error>
-<div *ngIf="currentRecipe!==null">
-  <app-recipe-card class = "card"  [recipe]="currentRecipe"></app-recipe-card>
-  <button mat-button (click) = "nextRecipe()">Следующий</button>
+<h3 class = "header">Скажите что у вас есть и я посмотрю что можно приготовить</h3>
+<div class="typeform">
+  <app-ingredients-field (getIngs)="getIngs($event)"></app-ingredients-field>
 </div>
+<button class ="advice" mat-button *ngIf="selectedIngs" (click)="getIngAdvice()">Подскажи</button>
+<button  *ngIf="currentRecipe!==null" class = "advice" style=" left: 60px" mat-button (click) = "nextRecipe()">Следующий</button>
+<div>
+  <mat-error *ngIf="networkProblem">Проблемы с сервером или интернетом</mat-error>
+</div>
+
+  <app-recipe-card class="card" *ngIf="currentRecipe!==null" [recipe]="currentRecipe"></app-recipe-card>
+

@@ -30,13 +30,13 @@ export class AllRecipesComponent implements OnInit {
     let typename: string = event.target.value;
     this.selectedType = typename;
     this.recipeService.getRecipeNamesByTypename( typename ).subscribe( (data: string[]) => this.recipeNames = data );
-    this.recipeSnav.open().then(r=>r);
+    this.recipeSnav.open().then();
   }
 
   showAllRecipeNames( event: any ){
     this.selectedType = event.target.value;
     this.recipeService.getAllRecipesNames( ).subscribe( (data: string[]) => this.recipeNames = data );
-    this.recipeSnav.open().then(r=>r);
+    this.recipeSnav.open().then();
   }
 
   showRecipe( event: any ){

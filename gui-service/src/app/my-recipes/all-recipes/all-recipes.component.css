@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center;
   width: 200px;
-  background: rgba(255, 0, 0, 0.5);
+  background: #dadada;;
 }
 
 .recipe-container{
@@ -30,5 +30,13 @@
   width: auto;
   min-width: 200px;
   max-width: 500px;
-  background: rgba(255, 0, 0, 0.5);
+  background: #dadada;
+}
+
+.header{
+  text-align: center;
+}
+
+.types{
+  width: 100%;
 }

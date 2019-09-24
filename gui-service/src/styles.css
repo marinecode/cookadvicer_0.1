@@ -6,8 +6,12 @@ html, body, app-root {
   height: 100%;
   display: flex;
   flex-direction: column;
+  background: #eeeeee;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 body {
   overflow: hidden;
   margin:0;
+
 }
+
