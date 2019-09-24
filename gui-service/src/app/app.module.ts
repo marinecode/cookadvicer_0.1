@@ -66,8 +66,8 @@ import {ProtectDirective} from "./directives/protect.directive";
     JwtModule.forRoot({
       config: {
         tokenGetter: ()=> {return localStorage.getItem('access_token')},
-        whitelistedDomains: ["localhost:8080","localhost:10000","localhost:10001"],
-        blacklistedRoutes: ["localhost:8901"],
+        whitelistedDomains: ['localhost:8080'],
+        blacklistedRoutes: ['http://localhost:8080/api/auth/oauth/token'],
         throwNoTokenError: true
       }
     }),

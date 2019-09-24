@@ -1,19 +1,18 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams, HttpRequest} from "@angular/common/http";
 import {User, UserLogin, UserReg} from "../model/user";
 import {AppSettings} from "../app-settings";
 import {JwtHelperService} from "@auth0/angular-jwt";
-import {Observable, Subscription} from "rxjs";
+import { Subscription} from "rxjs";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private apiUrl:string = AppSettings.API_ENDPOINT;
-  private authUrl:string = AppSettings.AUTH_ENDPOINT;
-  private loginUrl= this.authUrl + '/oauth/token';
-  private registerUrl = this.authUrl + '/users/register';
+  private loginUrl= AppSettings.API_ENDPOINT + AppSettings.AUTH_ENDPOINT + '/oauth/token';
+  private registerUrl = AppSettings.API_ENDPOINT + AppSettings.AUTH_ENDPOINT + '/users/register';
 
   user: User;
 
@@ -40,6 +39,7 @@ export class AuthService {
         .set('username',user.username)
         .set('password',user.password)
         .set('scope', 'webclient');
+
 
     this.http.post( this.loginUrl, body.toString(), httpOption )
       .subscribe(

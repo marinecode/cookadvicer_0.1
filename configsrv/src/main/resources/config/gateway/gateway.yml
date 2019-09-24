@@ -5,6 +5,9 @@ zuul:
     config:
       path: /config/**
       url: http://localhost:8888
+    auth:
+      path: /auth/**
+      url: http://localhost:8901
 
 
 hystrix:
