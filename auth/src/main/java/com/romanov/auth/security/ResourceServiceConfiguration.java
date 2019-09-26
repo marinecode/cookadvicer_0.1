@@ -14,6 +14,7 @@ public class ResourceServiceConfiguration extends ResourceServerConfigurerAdapte
         httpSecurity.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/users/register").permitAll()
-                .antMatchers(HttpMethod.OPTIONS,"/oauth/token").permitAll();
+                .antMatchers(HttpMethod.OPTIONS,"/oauth/token").permitAll()
+                .antMatchers("/users/emails").hasRole("ADMIN");
     }
 }

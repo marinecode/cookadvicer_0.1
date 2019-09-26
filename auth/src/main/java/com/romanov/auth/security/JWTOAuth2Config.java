@@ -25,7 +25,7 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
     private AuthenticationManager authenticationManager;
     private UserService userDetailsService;
     private TokenStore tokenStore;
-//    private DefaultTokenServices tokenServices;
+
     private JwtAccessTokenConverter jwtAccessTokenConverter;
 
 
@@ -33,12 +33,10 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
     public JWTOAuth2Config(AuthenticationManager authenticationManager,
                            UserService userDetailsService,
                            TokenStore tokenStore,
-//                           DefaultTokenServices tokenServices,
                            JwtAccessTokenConverter jwtAccessTokenConverter) {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
         this.tokenStore = tokenStore;
-//        this.tokenServices = tokenServices;
         this.jwtAccessTokenConverter = jwtAccessTokenConverter;
     }
 
@@ -62,7 +60,12 @@ public class JWTOAuth2Config extends AuthorizationServerConfigurerAdapter {
                         "refresh_token",
                         "password",
                         "client_credentials"
-                ).scopes("webclient");
+                ).scopes("webclient")
+                .and()
+                .withClient("post")
+                .secret("post")
+                .authorizedGrantTypes("password","refresh_token")
+                .scopes("post");
     }
 
     @Override

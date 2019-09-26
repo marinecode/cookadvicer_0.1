@@ -37,20 +37,11 @@ public class JwtTokenStoreConfig {
     }
 
 
-    UserService userService;
+    private UserService userService;
 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-
-
-        //мне пока не нужно
-//        DefaultUserAuthenticationConverter duac = new DefaultUserAuthenticationConverter();
-//        duac.setUserDetailsService( userService );
-//        DefaultAccessTokenConverter datc = new DefaultAccessTokenConverter();
-//        datc.setUserTokenConverter( duac );
-//
-//        converter.setAccessTokenConverter( datc );
 
         converter.setSigningKey(serviceConfig.getJwtSigningKey());
 
