@@ -40,3 +40,9 @@
 .types{
   width: 100%;
 }
+
+.cardPositon{
+  position: relative;
+  left: 200px;
+  top: 100px;
+}

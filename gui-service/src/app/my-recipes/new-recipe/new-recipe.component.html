@@ -1,5 +1,5 @@
-
-<form>
+<div class="newrecipe">
+  <form>
   <mat-form-field>
   <mat-label>Название</mat-label>
   <input matInput [formControl]="nameForm">
@@ -34,9 +34,10 @@
 <div>
   <app-rating-field #ratingField (getRating)="getRating($event)"></app-rating-field>
 </div>
-<button mat-button (click)="addRecipe()" *ngIf="!(nameForm.invalid||(!type)||(ingredients.length===0))" >
+<button mat-button class ="add" (click)="addRecipe()" *ngIf="!(nameForm.invalid||(!type)||(ingredients.length===0))" >
   Добавить
 </button>
   <mat-error *ngIf="message">{{message}}</mat-error>
 </form>
+</div>
 
