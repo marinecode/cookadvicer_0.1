@@ -25,7 +25,7 @@ export class SimpleAdviceComponent extends AdviceComponent implements OnInit {
   typeControl: FormControl = new FormControl();
 
   ngOnInit() {
-    this.typeService.getAllTypes().subscribe( data => this.allTypes = data );
+    this.typeService.getAllUsedTypes().subscribe( data => this.allTypes = data );
   }
 
   getSimpleAdvice(){

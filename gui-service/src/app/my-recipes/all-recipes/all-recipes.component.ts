@@ -23,7 +23,7 @@ export class AllRecipesComponent implements OnInit {
                private recipeService: RecipeService) { }
 
   ngOnInit() {
-    this.typeService.getAllTypes().subscribe( (data:Type[])=> this.allTypes = data );
+    this.typeService.getAllUsedTypes().subscribe( (data:Type[])=> this.allTypes = data );
   }
 
   showRecipeNamesByType( event: any ){
