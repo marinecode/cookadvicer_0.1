@@ -1,5 +1,6 @@
 package com.romanov.postman.service;
 
+import com.romanov.postman.config.ServiceConfig;
 import com.romanov.postman.model.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -17,20 +18,19 @@ public class AddressesService {
 
     private RestTemplate rest;
     private AuthService authService;
-
+    private ServiceConfig config;
 
     @Autowired
-    public AddressesService(RestTemplate rest, AuthService authService) {
+    public AddressesService(RestTemplate rest, AuthService authService, ServiceConfig config) {
         this.rest = rest;
         this.authService = authService;
+        this.config = config;
     }
 
-    private String emailUrl = "http://localhost:8080/api/auth/users/emails";
 
     ResponseEntity<List<UserDTO>> getEmailAddresses(){
         if (this.authService.login()){
-            System.out.println("Postman loggedIn");;
-            return rest.exchange( emailUrl, HttpMethod.GET, HttpEntity.EMPTY,
+            return rest.exchange( config.getEmailUrl() , HttpMethod.GET, HttpEntity.EMPTY,
                 new ParameterizedTypeReference<List<UserDTO>>() {});
         }else{
             return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);

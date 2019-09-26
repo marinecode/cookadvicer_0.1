@@ -16,7 +16,6 @@ export class TopBarComponent implements OnInit {
 
   constructor( private authService: AuthService ) {
     this.loggedIn = this.authService.isLoggedIn();
-    console.log( this.authService.user.role );
     if( this.loggedIn ){
       this.isAdmin = this.authService.user.role.includes('ROLE_ADMIN');
     }
@@ -24,7 +23,12 @@ export class TopBarComponent implements OnInit {
 
   ngOnInit() {
     this.authService.subscribe(
-      event => {this.loggedIn = event;} );
+      event => { this.loggedIn = event;
+                      if(event){
+                        this.isAdmin = this.authService.user.role.includes('ROLE_ADMIN');
+                      }else{
+                        this.isAdmin = false;
+                      }} );
   }
 
   logout(){

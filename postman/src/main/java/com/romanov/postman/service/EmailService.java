@@ -12,8 +12,8 @@ public class EmailService {
     private AddressesService addressesService;
 
     @Autowired
-    public EmailService(AddressesService adresesService) {
-        this.addressesService = adresesService;
+    public EmailService(AddressesService addressesService) {
+        this.addressesService = addressesService;
     }
 
 

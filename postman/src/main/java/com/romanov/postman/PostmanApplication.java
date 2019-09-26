@@ -25,6 +25,7 @@ public class PostmanApplication {
 
         @Bean
         @Primary
+        //добавляет заголовок с токеном полученным самим сервисом (не от юзера)
         public RestTemplate getCustomRestTemplate(){
             RestTemplate rest = new RestTemplate();
 

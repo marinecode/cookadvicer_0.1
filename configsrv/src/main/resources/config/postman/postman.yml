@@ -2,3 +2,12 @@ server:
   port: 10002
 signing:
   key: "345345fsdgsf5345"
+url:
+  login: "http://localhost:8080/api/auth/oauth/token"
+  emails: "http://localhost:8080/api/auth/users/emails"
+login:
+  data:
+    username: "Artem"
+    password: "123"
+    client: "post"
+    secret: "post"
