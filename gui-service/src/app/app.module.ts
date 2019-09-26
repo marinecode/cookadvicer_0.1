@@ -67,7 +67,7 @@ import {ProtectDirective} from "./directives/protect.directive";
       config: {
         tokenGetter: ()=> {return localStorage.getItem('access_token')},
         whitelistedDomains: ['localhost:8080'],
-        blacklistedRoutes: ['http://localhost:8080/api/auth/oauth/token'],
+        blacklistedRoutes: ['http://localhost:8080/api/auth/oauth/token', "http://localhost:8080/api/auth/users/register"],
         throwNoTokenError: true
       }
     }),
