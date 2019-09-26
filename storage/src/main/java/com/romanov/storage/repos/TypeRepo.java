@@ -13,6 +13,6 @@ public interface TypeRepo extends JpaRepository<Type, String> {
 
     List<Type> findAllByCreator( String creator );
 
-    @Query(value = "SELECT type from recipes where creator = :creator", nativeQuery = true )
+    @Query(value = "SELECT DISTINCT type from recipes where creator = :creator", nativeQuery = true )
     Optional<List<String>> findAllUsedTypes(@Param("creator") String creator );
 }
