@@ -6,6 +6,7 @@
 <button  *ngIf="currentRecipe!==null" class = "advice" style=" left: 60px" mat-button (click) = "nextRecipe()">Следующий</button>
 <div>
   <mat-error *ngIf="networkProblem">Проблемы с сервером или интернетом</mat-error>
+  <mat-error *ngIf="noContent">Из этого вы не умеете ничего готовить. Да поможет вам гугл</mat-error>
 </div>
 
   <app-recipe-card class="card" *ngIf="currentRecipe!==null" [recipe]="currentRecipe"></app-recipe-card>

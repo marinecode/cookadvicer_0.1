@@ -16,15 +16,13 @@
 
       <mat-sidenav #recipesnav mode="side"  class="recipe-sidenav">
        <h4 class = "header">Ищем: {{selectedType}}</h4>
-<!--        <mat-list-item *ngIf="noContent">У вас пока нет таких рецептов</mat-list-item>-->
         <mat-list-item *ngFor="let name of recipeNames">
           <button mat-button (click)="showRecipe($event)" value = '{{name}}'>{{name}}</button>
         </mat-list-item>
       </mat-sidenav>
 
       <mat-sidenav-content>
-
-        <app-recipe-card *ngIf="selectedRecipe" [recipe]="selectedRecipe"></app-recipe-card>
+        <app-recipe-card class = "cardPositon" *ngIf="selectedRecipe" [recipe]="selectedRecipe"></app-recipe-card>
       </mat-sidenav-content>
 
     </mat-sidenav-container>
