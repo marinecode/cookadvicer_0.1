@@ -7,6 +7,7 @@ import recipes.Recipe;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,7 +21,7 @@ public class SimpleAdviceService {
      * Далее идут имена приготовленных ранее рецептов,
      * отсортированных в порядке давности (первые те, у кого самая ранняя дата последнего приготовления).
      */
-    public List<String> getSimpleAdvise( String[] types ){
+    public List<String> getSimpleAdvise(String[] types ){
         List<Recipe> recipes = storageApiService.getRecipeByTypes( types ).getBody();
         LinkedList<Recipe> result = new LinkedList<>(notPrepRecipesOrderedByRating( recipes ));
         result.addAll( prepRecipesOrderedByLastPrepDate( recipes ));

@@ -29,7 +29,6 @@ public class StorageApiService {
 
         UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl( config.getStorageUrl() + "/recipe/bytypes")
                                                           .queryParam("types", (Object[]) types).build();
-        System.out.println(uriComponents.toUriString());
         return rest.exchange( uriComponents.toUriString(), HttpMethod.GET, HttpEntity.EMPTY,
                 new ParameterizedTypeReference<List<Recipe>>() {});
     }

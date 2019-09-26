@@ -1,8 +1,5 @@
 package com.romanov.advisor.util;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class UserContext {
 
     public static final String AUTH_TOKEN = "Authorization";
