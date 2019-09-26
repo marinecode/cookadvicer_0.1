@@ -35,7 +35,8 @@ public class RecipeController {
 
     @GetMapping( path = "/bytypes")
     private ResponseEntity<List<Recipe>> getRecipeByTypes( @RequestParam( "types") String[] types ){
-        return optionalExecute( recipeRepo.findRecipeByTypeIn( types ), HttpStatus.OK, HttpStatus.NO_CONTENT );
+        return optionalExecute( recipeRepo.findRecipeByTypeInAndCreator( types,  UserContextHolder.getContext().getUserName() ),
+                            HttpStatus.OK, HttpStatus.NO_CONTENT );
     }
 
     @GetMapping(path = "/validation/name/{name}")
@@ -46,7 +47,7 @@ public class RecipeController {
 
     @GetMapping(path ="/names/bytype")
     private ResponseEntity<List<String>> getNamesByType( @RequestParam("type") String type ){
-        Optional<List<String>> names = recipeRepo.namesByTypeAndAndCreator( type , UserContextHolder.getContext().getUserName());
+        Optional<List<String>> names = recipeRepo.namesByTypeAndCreator( type , UserContextHolder.getContext().getUserName());
         return optionalExecute( names, HttpStatus.OK, HttpStatus.NO_CONTENT);
     }
 
