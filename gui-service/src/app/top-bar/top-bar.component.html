@@ -2,7 +2,7 @@
 <mat-toolbar color="primary">
  <h1><span class="light">COOK</span>ADVISOR</h1>
   <span class="spacer"></span>
-  <a mat-button *ngIf="isAdmin" [routerLink]="['postman']" routerLinkActive="active">Рассылка</a>
+  <a mat-button *ngIf="isAdmin" [routerLink]="['postman']" routerLinkActive="active">РАССЫЛКА</a>
   <a mat-button [routerLink]="['home']" routerLinkActive="active">ГЛАВНАЯ</a>
   <a mat-button *ngIf="loggedIn" (click)="logout()">ВЫЙТИ</a>
   <a mat-button *ngIf="!loggedIn" [routerLink]="['login']" routerLinkActive="active">ВОЙТИ</a>
