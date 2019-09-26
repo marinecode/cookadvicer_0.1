@@ -1,4 +1,4 @@
-package com.romanov.postman.service;
+package com.romanov.postman.model;
 
 import lombok.Data;
 

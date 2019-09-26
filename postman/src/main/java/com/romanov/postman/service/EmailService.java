@@ -1,5 +1,6 @@
 package com.romanov.postman.service;
 
+import com.romanov.postman.model.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,16 +9,16 @@ import java.util.List;
 @Service
 public class EmailService {
 
-    private AdresesService adresesService;
+    private AddressesService addressesService;
 
     @Autowired
-    public EmailService(AdresesService adresesService) {
-        this.adresesService = adresesService;
+    public EmailService(AddressesService adresesService) {
+        this.addressesService = adresesService;
     }
 
 
     private List<UserDTO> getEmails(){
-        return adresesService.getEmailAdreses().getBody();
+        return addressesService.getEmailAddresses().getBody();
     }
 
     private void sendEmail( String to, String userName ){

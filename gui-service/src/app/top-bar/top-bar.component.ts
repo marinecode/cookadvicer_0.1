@@ -12,10 +12,14 @@ export class TopBarComponent implements OnInit {
 
 
   loggedIn: boolean;
-
+  isAdmin:boolean = false;
 
   constructor( private authService: AuthService ) {
     this.loggedIn = this.authService.isLoggedIn();
+    console.log( this.authService.user.role );
+    if( this.loggedIn ){
+      this.isAdmin = this.authService.user.role.includes('ROLE_ADMIN');
+    }
   }
 
   ngOnInit() {

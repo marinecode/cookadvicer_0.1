@@ -4,6 +4,7 @@ import {User, UserLogin, UserReg} from "../model/user";
 import {AppSettings} from "../app-settings";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import { Subscription} from "rxjs";
+import {parse} from "url";
 
 
 @Injectable({
@@ -26,6 +27,7 @@ export class AuthService {
 
 
  public login( user: UserLogin, onSuccess, errorHandle ){
+
 
     let authHeader:string = window.btoa("ui:secret");
 
@@ -70,6 +72,7 @@ export class AuthService {
   private parseUser( access_token ):User{
     let user:User = new User();
     user.username = this.jwtHelper.decodeToken( access_token ).user_name;
+    user.role = this.jwtHelper.decodeToken( access_token ).authorities;
     return user;
   }
 

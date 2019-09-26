@@ -5,6 +5,7 @@ export class UserLogin {
 
 export class User{
   username: string;
+  role:string;
 }
 
 export class UserReg {

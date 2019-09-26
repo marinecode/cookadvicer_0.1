@@ -1,5 +1,6 @@
 package com.romanov.postman.controller;
 
+import com.romanov.postman.service.AuthService;
 import com.romanov.postman.service.EmailService;
 import com.romanov.postman.service.SchedulerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,22 +8,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/")
+@CrossOrigin("*")
 public class PostmanController {
 
-    SchedulerService schedulerService;
-    EmailService emailService;
+    private SchedulerService schedulerService;
+    private EmailService emailService;
+    private AuthService authService;
 
     @Autowired
-  public PostmanController(SchedulerService schedulerService, EmailService emailService) {
+  public PostmanController(SchedulerService schedulerService, EmailService emailService, AuthService authService ) {
         this.schedulerService = schedulerService;
         this.emailService = emailService;
+        this.authService = authService;
     }
 
     @GetMapping("send")
@@ -44,5 +45,10 @@ public class PostmanController {
         schedulerService.schedule( emailService.getSanding(), cron );
         return new ResponseEntity<String>("начал отправку в соответствии с " + exp, HttpStatus.OK);
     }
+
+//    @GetMapping("login")
+//    public ResponseEntity<String> login(){
+//       return new ResponseEntity<String>( authService.login(), HttpStatus.OK );
+//    }
 }
 

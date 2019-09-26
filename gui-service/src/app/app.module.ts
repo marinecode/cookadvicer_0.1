@@ -44,6 +44,7 @@ import { IngAdviceComponent } from './my-recipes/advice/ing-advice/ing-advice.co
 import {AuthService} from "./services/auth.service";
 import {JwtModule} from "@auth0/angular-jwt";
 import {ProtectDirective} from "./directives/protect.directive";
+import { PostmanComponent } from './postman/postman.component';
 
 
 @NgModule({
@@ -93,7 +94,8 @@ import {ProtectDirective} from "./directives/protect.directive";
     RecipeCardComponent,
     SimpleAdviceComponent,
     IngAdviceComponent,
-    ProtectDirective
+    ProtectDirective,
+    PostmanComponent
   ],
   providers: [
     IngService, TypeService, RecipeService, NameValidator, AdviceService, AuthService,

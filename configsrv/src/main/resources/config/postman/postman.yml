@@ -1,2 +1,4 @@
 server:
   port: 10002
+signing:
+  key: "345345fsdgsf5345"

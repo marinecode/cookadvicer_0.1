@@ -8,4 +8,5 @@ export class AppSettings {
   public static Storage_ENDPOINT = '/storage';
   public static ADVICE_ENDPOINT = '/advisor';
   public static AUTH_ENDPOINT =  '/auth';
+  public static POST_ENDPOINT = '/postman'
 }
