@@ -1,54 +1,77 @@
 package com.romanov.postman.controller;
 
+import com.romanov.postman.exception.CronTriggerIsNull;
+import com.romanov.postman.exception.SenderBusyException;
+import com.romanov.postman.model.MailSettings;
+import com.romanov.postman.model.State;
 import com.romanov.postman.service.AuthService;
 import com.romanov.postman.service.EmailService;
 import com.romanov.postman.service.SchedulerService;
+import com.romanov.postman.service.StateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.support.CronTrigger;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController()
 @RequestMapping("/")
 @CrossOrigin("*")
+
 public class PostmanController {
 
     private SchedulerService schedulerService;
     private EmailService emailService;
-    private AuthService authService;
+    private StateService stateService;
 
     @Autowired
-  public PostmanController(SchedulerService schedulerService, EmailService emailService, AuthService authService ) {
+    public PostmanController(SchedulerService schedulerService, EmailService emailService, StateService stateService) {
         this.schedulerService = schedulerService;
         this.emailService = emailService;
-        this.authService = authService;
+        this.stateService = stateService;
     }
 
+
     @GetMapping("send")
-    public ResponseEntity<String> sendEmailEveryFive(){
-        schedulerService.schedule( emailService.getSanding(), schedulerService.every5seconds() );
-        return new ResponseEntity<String>("отправляю письма каждые 5 секунд", HttpStatus.OK);
+    public ResponseEntity<State> sendEmailWithCurrentCron(@RequestBody MailSettings settings ){
+        emailService.setMessageTemplate( settings );
+        State state = stateService.getState();
+        try{
+            schedulerService.schedule( emailService.getSending() );
+        }catch (CronTriggerIsNull e){
+
+            state.setMessage("Не установлена периодичность.");
+            return new ResponseEntity<State>( state, HttpStatus.CONFLICT);
+        }catch (SenderBusyException e){
+
+            state.setMessage("Рассылка активна. Хотите изменить расписание или сообщение, остановите текущую рассылку.");
+            return new ResponseEntity<State>( state, HttpStatus.OK);
+        }
+        state.setMessage("Рассылка активна");
+        return new ResponseEntity<State>( stateService.getState(), HttpStatus.OK);
+    }
+
+    @GetMapping("sendnow")
+    private ResponseEntity<State> sendRightNow( @RequestBody MailSettings settings ){
+        emailService.sendMessageRightNow( settings );
+        return new ResponseEntity<State>( stateService.getState(), HttpStatus.OK);
     }
 
     @GetMapping("stop")
-    public ResponseEntity<String> stopSending(){
+    public ResponseEntity<State> stopSending(){
         schedulerService.shutdown();
-        return new ResponseEntity<String>("остановил отправку", HttpStatus.OK);
+        return new ResponseEntity<State>(stateService.getState(), HttpStatus.OK);
     }
 
     @GetMapping("cron")
-    public ResponseEntity<String> sartWithCron(@RequestParam("exp") String exp ){
-        exp = exp.substring(1,exp.length());
-        CronTrigger cron = schedulerService.cronTrigger( exp );
-        schedulerService.schedule( emailService.getSanding(), cron );
-        return new ResponseEntity<String>("начал отправку в соответствии с " + exp, HttpStatus.OK);
+    public ResponseEntity<State> startWithCron(@RequestParam("exp") String exp ){
+        exp = exp.substring(1, exp.length() - 1);
+        schedulerService.setCronTrigger( schedulerService.newCronTrigger( exp ) );
+        return new ResponseEntity<State>(stateService.getState() , HttpStatus.OK);
     }
 
-//    @GetMapping("login")
-//    public ResponseEntity<String> login(){
-//       return new ResponseEntity<String>( authService.login(), HttpStatus.OK );
-//    }
+    @GetMapping(value = "state", produces = "application/json")
+    public ResponseEntity<State> getCurrentState(){
+        return new ResponseEntity<State>( stateService.getState(), HttpStatus.OK);
+    }
 }
 
