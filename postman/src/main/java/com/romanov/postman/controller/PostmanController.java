@@ -31,7 +31,7 @@ public class PostmanController {
     }
 
 
-    @GetMapping("send")
+    @PostMapping("send")
     public ResponseEntity<State> sendEmailWithCurrentCron(@RequestBody MailSettings settings ){
         emailService.setMessageTemplate( settings );
         State state = stateService.getState();
@@ -50,10 +50,12 @@ public class PostmanController {
         return new ResponseEntity<State>( stateService.getState(), HttpStatus.OK);
     }
 
-    @GetMapping("sendnow")
+    @PostMapping("sendnow")
     private ResponseEntity<State> sendRightNow( @RequestBody MailSettings settings ){
         emailService.sendMessageRightNow( settings );
-        return new ResponseEntity<State>( stateService.getState(), HttpStatus.OK);
+        State state = stateService.getState();
+        state.setMessage("Произвел отправку вне расписания.");
+        return new ResponseEntity<State>( state, HttpStatus.OK);
     }
 
     @GetMapping("stop")

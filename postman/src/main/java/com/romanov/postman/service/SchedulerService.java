@@ -36,10 +36,10 @@ public class SchedulerService {
         if( isActive() ){
             throw new SenderBusyException();
         }
-        scheduler.initialize();
         if( currentTrigger == null ){
             throw new CronTriggerIsNull();
         }
+        scheduler.initialize();
         scheduler.schedule( task, currentTrigger );
 
     }

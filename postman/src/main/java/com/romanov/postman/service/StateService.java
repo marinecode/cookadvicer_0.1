@@ -29,6 +29,11 @@ public class StateService {
             state.setNextSend( trigger.nextExecutionTime( emailService.getTriggerContext() ));
         }
         state.setActive( schedulerService.isActive() );
+        if( schedulerService.isActive() ){
+            state.setMessage( "Рассылка активна");
+        }else{
+            state.setMessage( "Рассылка остановлена");
+        }
         return state;
     }
 }

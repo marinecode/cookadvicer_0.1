@@ -1,5 +1,30 @@
-<div [appProtected] = "true">
-<p>{{message}}</p>
-<button mat-button (click)="send()">Отправить</button>
-<button mat-button (click)="stop()">Остановить</button>
+
+<div  [appProtected] = "true">
+  <div class="container">
+    <mat-form-field>
+      <span>Тема</span>
+      <input matInput [(ngModel)]="settings.subject" value="{{state.subject}}">
+    </mat-form-field>
+
+    <mat-form-field>
+      <span>Текст</span>
+      <textarea matInput [(ngModel)]="settings.text"> {{state.text}}</textarea>
+    </mat-form-field>
+  </div>
+
+    <div>Время следующей отправки: {{state.nextSend}}</div>
+
+    <mat-form-field>
+      <span>Cron выражение</span>
+      <input matInput [formControl]="cronForm" value="{{state.cronExp}}">
+      <mat-error *ngIf="cronForm.errors?.cronInvalid">Выражение должно состоять из 6 элементов через пробелы</mat-error>
+    </mat-form-field>
+
+<p>Текущее состояние: {{state.message}}</p>
+  <button mat-button class = "adviceButton" (click)="send()">Отправить</button>
+  <button mat-button class = "adviceButton" (click)="stop()">Остановить</button>
+  <button mat-button class = "adviceButton" (click)="sendNow()">Отправить сейчас</button>
+  <button mat-button class = "adviceButton" (click)="setCron()">Измениь расписание</button>
+  <button mat-button class = "adviceButton" (click)="getState()">Текущее состояние</button>
 </div>
+<mat-error *ngIf="networkProblem">Проблемы с сервером или интернетом</mat-error>
