@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 
 import {RecipeService} from "../../services/recipe.service";
 import {AbstractControl, AsyncValidator, ValidationErrors} from "@angular/forms";
-import {catchError, map, take} from "rxjs/operators";
+import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
 
 @Injectable(

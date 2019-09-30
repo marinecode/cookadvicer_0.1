@@ -6,8 +6,8 @@
   </mat-select>
 </mat-form-field>
 <div>
-  <button class ="advice" mat-button *ngIf="typeControl.value" (click)="getSimpleAdvice()">Подскажи</button>
-  <button *ngIf="currentRecipe!==null" class ="advice" style=" left: 60px"mat-button (click) = "nextRecipe()">Следующий</button>
+  <button class ="adviceButton" mat-button *ngIf="typeControl.value" (click)="getSimpleAdvice()">Подскажи</button>
+  <button *ngIf="currentRecipe!==null" class ="adviceButton" style=" left: 60px" mat-button (click) = "nextRecipe()">Следующий</button>
   <mat-error *ngIf="networkProblem">Проблемы с сервером или интернетом</mat-error>
 </div>
 

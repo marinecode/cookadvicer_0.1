@@ -2,7 +2,7 @@
 <div class="typeform">
   <app-ingredients-field (getIngs)="getIngs($event)"></app-ingredients-field>
 </div>
-<button class ="advice" mat-button *ngIf="selectedIngs" (click)="getIngAdvice()">Подскажи</button>
+<button class ="adviceButton" mat-button *ngIf="selectedIngs" (click)="getIngAdvice()">Подскажи</button>
 <button  *ngIf="currentRecipe!==null" class = "advice" style=" left: 60px" mat-button (click) = "nextRecipe()">Следующий</button>
 <div>
   <mat-error *ngIf="networkProblem">Проблемы с сервером или интернетом</mat-error>
